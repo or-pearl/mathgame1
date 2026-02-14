@@ -9,7 +9,8 @@ This `/prompts` directory contains role-specific agent prompts that turn Claude 
 In Claude Code, invoke an agent like this:
 
 ```
-Read /prompts/pm-discovery.md for your role. Then read /docs/pdb.md if it exists.
+Read /prompts/pm-discovery.md for your role.
+Check /sources/ for reference materials, then read /docs/pdb.md if it exists.
 I need to define the problem for [your product idea].
 ```
 
@@ -34,12 +35,16 @@ Implement the next item in /docs/backlog.md.
 │   ├── ds-engineering.md
 │   ├── qa-review.md
 │   └── qa-acceptance.md
+├── /sources                    # Founder-provided reference materials
+│   ├── (articles, papers, guidelines, regulatory docs, competitor analysis...)
+│   └── README.md               # Optional: index of what each source is and why it's here
 ├── /docs                       # Shared artifacts (the "Project Knowledge")
 │   ├── pdb.md                  # Problem Definition Brief
 │   ├── prd.md                  # Product Requirements Document
 │   ├── architecture.md         # System architecture + ADRs
 │   ├── backlog.md              # Prioritized backlog
 │   ├── decision-log.md         # Decision history
+│   ├── deployment.md           # Deployment guide
 │   ├── model-spec.md           # ML model specification (if applicable)
 │   ├── model-eval-report.md    # ML evaluation results (if applicable)
 │   ├── qa-review-notes.md      # QA findings
@@ -57,15 +62,107 @@ Implement the next item in /docs/backlog.md.
 └── README.md
 ```
 
+## The `/sources` Directory
+
+This is where you drop reference materials that agents should read before doing their work. PM-Discovery and PM-Requirements check this directory first, before any other input.
+
+### What goes in `/sources`
+
+- Research papers (PDFs, markdown summaries)
+- Clinical guidelines and protocols
+- Regulatory documents (HIPAA sections, MDR requirements, GDPR articles)
+- Competitor product teardowns or reviews
+- Market reports and landscape analyses
+- API documentation for systems you need to integrate with
+- UX research outputs, user interview transcripts
+- Internal strategy docs or organizational constraints
+- Standards documentation (HL7, FHIR, WCAG, ISO)
+- News articles or industry analyses relevant to the problem
+
+### How to organize `/sources`
+
+Keep it simple. Flat directory is fine for small projects. For larger ones:
+
+```
+/sources/
+├── README.md                   # Index: what each source is and why it matters
+├── hipaa-164-530.pdf           # Regulatory: audit log retention requirements
+├── morse-fall-scale.md         # Clinical: fall risk assessment protocol
+├── competitor-analysis.md      # Market: teardown of top 3 competitors
+├── user-interviews-q4.md       # Research: 12 user interviews from Q4
+└── fhir-patient-resource.md    # Technical: FHIR spec for patient data model
+```
+
+A `/sources/README.md` index is optional but helpful when you accumulate more than 5-6 files:
+
+```markdown
+# Source Materials Index
+
+| File | Type | Why It's Here |
+|------|------|---------------|
+| hipaa-164-530.pdf | Regulatory | Defines audit log retention requirements |
+| morse-fall-scale.md | Clinical | Fall risk assessment protocol we're digitizing |
+| competitor-analysis.md | Market | Competitor feature gaps our product addresses |
+```
+
+### How sources flow through the system
+
+```
+You drop files in /sources/
+        │
+        ▼
+PM-Discovery reads them ──► Extracts problem-relevant insights
+        │                    Cites them in PDB (Evidence Base section)
+        │                    Flags what the sources DON'T cover (Source Gaps)
+        │
+        ▼
+PM-Requirements reads them ──► Translates source mandates into testable requirements
+        │                       Traces each requirement to its source (or marks "inferred")
+        │                       Flags conflicts between sources and architecture
+        │
+        ▼
+Downstream agents (CTO, DS, QA) read /docs/ artifacts
+        which already contain source citations and traceability
+        They consult /sources/ directly only when they need
+        the original detail (e.g., checking an API spec)
+```
+
+### Two modes of source usage
+
+**Default mode:** Sources are one input among several. Agents synthesize, challenge, and cross-reference them with their own reasoning. A research paper doesn't automatically become a requirement — PM-Requirements decides whether and how to incorporate it.
+
+**Strict mode:** When you say "this is the definitive standard" or "follow this exactly," the agent constrains itself to the provided material. Use this for regulatory documents or organizational mandates that aren't open to interpretation.
+
+### Adding sources mid-project
+
+Sources aren't just a day-one input. You can add new materials at any phase:
+
+- Found a relevant paper while building? Drop it in `/sources/` and re-invoke PM-Requirements: "Read /prompts/pm-requirements.md. I've added a new source in /sources/[filename]. Assess its impact on the current PRD."
+- Got feedback from a stakeholder? Save it as a markdown file in `/sources/` and re-invoke PM-Discovery to update the PDB.
+- Received API docs from a vendor? Drop them in `/sources/` and invoke CTO-Architect to update the integration architecture.
+
+The agents are designed to handle incremental source updates without regenerating everything from scratch.
+
 ## Workflow: Idea → Shipped Product
 
 ### Phase 1: Discovery (Day 1)
 ```
 Agent: pm-discovery
-Input: Your idea / problem statement
+Input: Your idea + source materials (if any)
 Output: /docs/pdb.md
 ```
-**You say:** "Read /prompts/pm-discovery.md. Here's what I want to build: [describe the problem or idea]."
+
+**Without sources:**
+"Read /prompts/pm-discovery.md. Here's what I want to build: [describe the problem or idea]."
+
+**With sources already in `/sources/`:**
+"Read /prompts/pm-discovery.md. Check /sources/ for reference materials I've provided. Here's the problem I want to explore: [describe the problem]. The sources include [brief note on what you've provided and why]."
+
+**With inline sources:**
+"Read /prompts/pm-discovery.md. Here's a research paper that describes the problem space: [paste or attach]. I want to build a product that addresses [specific aspect]. Use this as primary context."
+
+**Strict source mode:**
+"Read /prompts/pm-discovery.md. Read /sources/clinical-guideline.md. This is the definitive protocol — define the problem strictly based on what this guideline describes. Don't introduce outside assumptions."
 
 ### Phase 2: Feasibility (Day 1-2)
 ```
@@ -82,10 +179,18 @@ If ML is involved:
 ### Phase 3: Requirements (Day 2-3)
 ```
 Agent: pm-requirements
-Input: /docs/pdb.md, /docs/architecture.md
+Input: /docs/pdb.md, /docs/architecture.md, /sources/* (if any)
 Output: /docs/prd.md, /docs/backlog.md, /docs/decision-log.md
 ```
-**You say:** "Read /prompts/pm-requirements.md. Read /docs/pdb.md and /docs/architecture.md. Draft the PRD with a Pilot-first scope."
+
+**Standard:**
+"Read /prompts/pm-requirements.md. Check /sources/ for reference materials, then read /docs/pdb.md and /docs/architecture.md. Draft the PRD with a Pilot-first scope."
+
+**With regulatory source:**
+"Read /prompts/pm-requirements.md. Check /sources/ — I've added the HIPAA sections relevant to our product. Read /docs/pdb.md and /docs/architecture.md. Draft the PRD and make sure every HIPAA-derived requirement is explicitly cited and testable."
+
+**Updating PRD with new source:**
+"Read /prompts/pm-requirements.md. I've added /sources/vendor-api-docs.md. Assess how this affects the current PRD — specifically integration requirements in Section 7."
 
 ### Phase 4: Architecture (Day 3-4)
 ```
@@ -139,12 +244,18 @@ Output: /docs/release-readiness.md
 
 1. **Don't skip discovery.** 45 minutes with PM-Discovery saves weeks of building the wrong thing.
 
-2. **Run QA-Review after every 2-3 features**, not just before release. Catching a security issue early is 10x cheaper than catching it in production.
+2. **Drop sources before you start, not after.** If you have research, guidelines, or competitor analysis, put it in `/sources/` before invoking PM-Discovery. It's much cheaper to inform the problem definition upfront than to retrofit sources into a half-built PRD.
 
-3. **The decision log is your memory.** When you come back to the project after a week off, `/docs/decision-log.md` tells you what was decided and why.
+3. **Run QA-Review after every 2-3 features**, not just before release. Catching a security issue early is 10x cheaper than catching it in production.
 
-4. **Phase aggressively.** Your pilot should be embarrassingly small. PM-Requirements will help you cut scope.
+4. **The decision log is your memory.** When you come back to the project after a week off, `/docs/decision-log.md` tells you what was decided and why.
 
-5. **Git commit after every agent session.** Commit messages like "PM-Requirements: updated PRD scope for pilot" or "QA-Review: security review round 1" make the project history readable.
+5. **Phase aggressively.** Your pilot should be embarrassingly small. PM-Requirements will help you cut scope.
 
-6. **When agents disagree**, that's a feature, not a bug. If CTO-Architect says a requirement is infeasible and PM-Requirements insists it's critical, you (the founder) make the call and document it in the decision log.
+6. **Git commit after every agent session.** Commit messages like "PM-Requirements: updated PRD scope for pilot" or "QA-Review: security review round 1" make the project history readable. Commit source files too — they're part of your project's evidence base.
+
+7. **When agents disagree**, that's a feature, not a bug. If CTO-Architect says a requirement is infeasible and PM-Requirements insists it's critical, you (the founder) make the call and document it in the decision log.
+
+8. **Source quality matters.** A peer-reviewed paper and a random blog post should not carry equal weight. PM-Discovery and PM-Requirements are instructed to challenge sources — but you should also curate what you put in `/sources/`. Garbage in, garbage out.
+
+9. **Don't over-source.** Five well-chosen references are better than 30 loosely relevant articles. Each source the agents read takes context window space and processing time. Be selective.
