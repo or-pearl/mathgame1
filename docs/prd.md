@@ -6,6 +6,8 @@
 
 **Treasure of Tens** is a browser-based math adventure game that teaches first-grade students (ages 6–7) the **decomposition strategy** for mental math — the ability to break numbers apart and recombine them to make "friendly numbers" (multiples of 10, doubles, near-doubles) that are easier to add or subtract. Players take on the role of a young treasure hunter exploring a gem-filled cave. Numbers are represented as **physical groups of gems** that students split apart by dragging a divider, then recombine into groups of 10 ("Power Gems") to unlock treasure chests, activate bridges, and progress through the adventure. The game progresses from concrete gem manipulation through pictorial representations to abstract number notation, following the research-backed Concrete-Representational-Abstract (CRA) framework.
 
+**Target Market & Language:** The initial release targets the Israeli market in **Hebrew** (right-to-left UI). The first pilot will be conducted with a first-grade class in Israel. Upon successful validation, the game will be localized for **English** and **Spanish** speaking markets.
+
 ### 1.2 Problem Reference
 
 **PDB:** `/docs/pdb.md`
@@ -56,6 +58,7 @@ The Pilot is a **single-strategy, addition-only, single-digit game** that proves
 - 15–20 levels across 3 worlds, each completable in ≤ 2 minutes
 - Basic progress map showing completed levels
 - Works on Chrome (Chromebook) and Safari (iPad) browsers
+- **Hebrew language UI and narration** (right-to-left layout, Hebrew text, Hebrew TTS/audio)
 
 **OUT (deferred to V1 or V2):**
 - Subtraction decomposition
@@ -68,7 +71,7 @@ The Pilot is a **single-strategy, addition-only, single-digit game** that proves
 
 ### 3.2 V1 Scope
 
-Completes the core decomposition experience and adds teacher visibility.
+Completes the core decomposition experience, adds teacher visibility, and begins international expansion.
 
 - World 4: Two-digit decomposition by place value (e.g., 47 = 40 + 7) using gem pouches (bundles of 10) and loose gems
 - World 5: Subtraction decomposition (break apart the subtrahend to subtract in friendly steps)
@@ -77,6 +80,7 @@ Completes the core decomposition experience and adds teacher visibility.
 - Adaptive difficulty: if a student completes 3 levels in a row with no errors, offer a "challenge" variant; if a student fails 2 levels in a row, offer a scaffolded "helper" variant
 - Transition from pictorial (dot arrays) to abstract (number notation with caret decomposition marks) in later levels
 - Hint system: after 2 failed attempts, show a ghost outline suggesting one valid split
+- **English language localization** (UI, narration, and LTR layout) for English-speaking markets
 
 ### 3.3 V2 / Future Scope
 
@@ -84,7 +88,7 @@ Completes the core decomposition experience and adds teacher visibility.
 - Number talk mode: multiplayer/classroom mode where teacher poses a problem and students submit their decomposition approach, then class reviews together
 - Parent dashboard with home practice recommendations
 - Offline mode (service worker caching)
-- Additional language support (Spanish)
+- **Spanish language localization** (UI, narration, and LTR layout) for Spanish-speaking markets
 - Sandbox / free-play mode for open-ended exploration
 - Integration with Google Classroom for roster sync
 
@@ -325,9 +329,9 @@ Completes the core decomposition experience and adds teacher visibility.
 
 **Acceptance Criteria:**
 - [ ] Every instructional message and feedback prompt has accompanying audio narration that plays automatically
-- [ ] Equations are read aloud in natural language (e.g., "Nine plus seven equals sixteen" not "9 + 7 = 16")
+- [ ] Equations are read aloud in natural language in Hebrew (e.g., "תשע ועוד שבע שווה שש עשרה" not "9 + 7 = 16"); English and Spanish narration added in V1/V2
 - [ ] A speaker icon is visible on every screen; tapping it replays the most recent narration
-- [ ] Narration voice is warm, encouraging, and age-appropriate
+- [ ] Narration voice is warm, encouraging, and age-appropriate; Pilot narration is in Hebrew
 - [ ] Narration does not overlap with sound effects; sound effects duck in volume when narration plays
 - [ ] Student can mute narration independently of sound effects via a settings toggle
 
@@ -455,7 +459,8 @@ Completes the core decomposition experience and adds teacher visibility.
 - Cave/treasure theme with illustrated backgrounds (not photorealistic)
 - Characters: a friendly explorer character (gender-neutral, customizable skin tone in V1) who narrates and reacts
 - Gems are round, chunky, and easy to distinguish at small sizes — no fine detail
-- All text uses a clear, large sans-serif font (minimum 24px body, 32px headings)
+- All text uses a clear, large sans-serif font (minimum 24px body, 32px headings); Hebrew font must support full niqqud (vowel diacritics) for early readers
+- **RTL layout:** All UI elements, text flow, and navigation are right-to-left for the Hebrew Pilot. Gem cluster layouts and number lines maintain mathematical convention (left-to-right number lines) but all chrome, menus, and text are RTL
 
 ### 8.2 Core Interaction Flow
 
@@ -486,12 +491,12 @@ Completes the core decomposition experience and adds teacher visibility.
 
 | State | Visual | Audio | Narration |
 |-------|--------|-------|-----------|
-| Correct split (makes 10) | Gems glow gold, fuse into Power Gem, sparkle particles | Chime + sparkle SFX | "You made a ten! Great job!" |
-| Valid split (doesn't make 10 yet) | Gems separate, counts shown | Soft click SFX | "Nice split! Now can you make a group of 10?" |
-| Invalid action (group > 10) | Gems bounce back, gentle red flash | Soft buzz SFX | "That's more than 10. Try splitting off some gems first." |
-| Level complete | Treasure chest opens, gems fly in | Triumphant fanfare | "You found the treasure! [Equation readout]" |
-| Hint triggered (Tier 1) | Ghost splitter animates | Gentle bell SFX | "Here's a hint — try splitting here!" |
-| Hint triggered (Tier 2) | Full animation walkthrough | Step-by-step narration | "Watch how I do it..." |
+| Correct split (makes 10) | Gems glow gold, fuse into Power Gem, sparkle particles | Chime + sparkle SFX | "!עשית עשר! כל הכבוד" (You made a ten! Great job!) |
+| Valid split (doesn't make 10 yet) | Gems separate, counts shown | Soft click SFX | "?פיצול יפה! עכשיו אפשר לעשות קבוצה של 10" (Nice split! Now can you make a group of 10?) |
+| Invalid action (group > 10) | Gems bounce back, gentle red flash | Soft buzz SFX | "זה יותר מ-10. נסה לפצל קצת אבני חן קודם" (That's more than 10. Try splitting off some gems first.) |
+| Level complete | Treasure chest opens, gems fly in | Triumphant fanfare | "!מצאת את האוצר" (You found the treasure!) + [Equation readout] |
+| Hint triggered (Tier 1) | Ghost splitter animates | Gentle bell SFX | "!הנה רמז — נסה לפצל כאן" (Here's a hint — try splitting here!) |
+| Hint triggered (Tier 2) | Full animation walkthrough | Step-by-step narration | "...תראה איך אני עושה את זה" (Watch how I do it...) |
 
 ---
 
@@ -513,12 +518,15 @@ Completes the core decomposition experience and adds teacher visibility.
 
 | # | Assumption | Support Level | Validation Plan |
 |---|-----------|---------------|-----------------|
-| 1 | Students have individual or shared access to a Chromebook or iPad during math time | Source-supported (PDB Assumption #1) | Confirm with pilot school |
+| 1 | Students in the Israeli pilot school have individual or shared access to a Chromebook, iPad, or other tablet during math time | Source-supported (PDB Assumption #1) | Confirm with pilot school |
 | 2 | First graders can learn the drag-to-split gesture with minimal instruction (1-2 guided attempts) | Unsupported — needs validation | Usability test with 5 students pre-pilot |
 | 3 | Teachers will use the game as a supplement to (not replacement for) number talks | Source-supported (Four Essential Mental Math Strategies — teacher-led discussion is critical) | Teacher onboarding guide |
 | 4 | Making 10 is the most accessible entry point for decomposition (before place value or subtraction) | Source-supported (Four Essential Mental Math Strategies — "decomposition is one of the first strategies I teach"; examples start with make-10) | Pilot learning outcome data |
 | 5 | 15–20 levels across 3 worlds provides sufficient practice for Pilot learning outcomes | Partially supported (Strategic Activities — "4–5 days of focused practice") | Pilot completion and mastery rate data |
 | 6 | localStorage persistence is adequate for a 6-week pilot at a single school | Unsupported — risk of data loss from browser/cache clearing | Monitor data-loss reports during pilot; mitigate with V1 server storage |
+| 7 | Israeli first-grade math curriculum covers decomposition and make-10 strategies, aligning with the game's pedagogical approach | Needs validation — Israeli curriculum may differ from US-based source material | Review Israeli Ministry of Education first-grade math standards before pilot |
+| 8 | Hebrew TTS quality (browser SpeechSynthesis API or cloud TTS) is sufficient for clear, child-friendly narration | Partially supported — Hebrew TTS has improved but may require a cloud TTS service for natural-sounding child-directed speech | Test Hebrew TTS options during development; budget for cloud TTS if browser API is inadequate |
+| 9 | Successful Hebrew pilot will validate the game concept for international expansion to English and Spanish markets | Unsupported — needs validation | Pilot learning outcome data; market research for EN/ES expansion |
 
 ---
 
@@ -533,10 +541,13 @@ Completes the core decomposition experience and adds teacher visibility.
 | 5 | **Monetization model:** Free pilot; but what's the V1 model? School site license? Freemium? | High — affects long-term decisions | No (not blocking Pilot) | Founder |
 | 6 | **Source gap — empirical efficacy data:** No controlled studies provided on digital decomposition games specifically. Pilot must generate its own efficacy evidence. | Medium — success metrics are best-guess targets | No (Pilot is the validation) | Founder |
 | 7 | **Subtraction scaffolding level:** The source notes subtraction decomposition is "not as commonly used" — how much scaffolding is needed in World 5 beyond the standard hint system? | Medium — affects V1 design | No (V1 scope) | PM |
+| 8 | **Hebrew niqqud (vowel diacritics):** Should in-game Hebrew text include niqqud to aid first-graders who are still learning to read, or is unvocalized text sufficient given that narration is audio-first? | Medium — affects readability for target age | No (default to including niqqud; can be removed later) | Founder |
+| 9 | **Israeli curriculum alignment:** Do Israeli first-grade math standards emphasize decomposition and make-10 strategies in the same way as US curricula? Are there curriculum-specific adaptations needed? | High — affects pedagogical validity for target market | Yes (pre-pilot curriculum review) | Founder |
+| 10 | **Localization architecture:** Should the codebase use an i18n framework from the start (anticipating EN/ES expansion), or build Hebrew-only first and refactor later? | Medium — affects development speed vs. future effort | No (recommend i18n from start to reduce rework) | Tech Lead |
 
 ---
 
-*Document version: 1.0 — Initial draft*
-*Last updated: 2026-02-19*
+*Document version: 1.1 — Hebrew-first language strategy*
+*Last updated: 2026-02-25*
 *Author: PM-Requirements Agent*
 *Status: Draft — awaiting founder review*
