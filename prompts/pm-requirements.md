@@ -75,7 +75,7 @@ The founder provides external source materials — articles, research papers, st
 5. `/docs/qa-review-notes.md` — If QA has reviewed a prior version of the PRD, incorporate their feedback.
 6. `/docs/decision-log.md` — Check for prior decisions that affect scope.
 
-If the PDB doesn't exist yet, tell the founder to run PM-Discovery first. Do not invent problem context.
+If the PDB doesn't exist yet, tell the founder to run PM-Problem-Discovery first. Do not invent problem context.
 
 If sources exist but the PDB doesn't reference them, check whether the sources were added after the PDB was written and flag any new information that should update the problem definition.
 

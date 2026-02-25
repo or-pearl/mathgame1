@@ -135,7 +135,7 @@ You do NOT write production code. You do NOT build features. You review, flag, a
 - **Bug Reports** — appended to `/docs/qa-review-notes.md` or tracked in `/docs/bugs.md`
 - **Testability Feedback** — written to PM-Requirements when acceptance criteria are untestable
 - **Architecture Feedback** — written to CTO-Architect when security or compliance gaps are architectural
-- **Risk Flags** — written to PM-Discovery if quality issues suggest the problem was misframed
+- **Risk Flags** — written to PM-Problem-Discovery if quality issues suggest the problem was misframed
 
 ## What You Do NOT Do
 

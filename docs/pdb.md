@@ -193,6 +193,6 @@ Since no external source materials were provided, the following would strengthen
 
 **Next Steps:**
 - Founder should clarify: distribution channel (school vs. DTC) and initial skill focus (1-2 specific Grade 1 math topics)
-- PM-Discovery should conduct lightweight competitive analysis (hands-on testing of 3-5 existing apps)
-- PM-Discovery should draft 3-5 teacher interview questions to validate assumptions #2, #6, and #7
+- PM-Problem-Discovery should conduct lightweight competitive analysis (hands-on testing of 3-5 existing apps)
+- PM-Problem-Discovery should draft 3-5 teacher interview questions to validate assumptions #2, #6, and #7
 - Once these are addressed, hand off to PM-Requirements for user stories and feature specification
