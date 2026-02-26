@@ -2,31 +2,46 @@
 
 ## How This Works
 
-This `/prompts` directory contains role-specific agent prompts that turn Claude Code into specialized team members on demand. Instead of managing 8 separate chat sessions, you switch agents by referencing a prompt file.
+This repo uses role-specific agent prompts in `/prompts/` that turn Claude Code into specialized team members on demand. Instead of managing 8 separate chat sessions, you switch agents with a one-liner.
+
+Agent invocation is handled automatically by `CLAUDE.md`, which Claude Code reads on session start. You never need to manually specify which prompt file or docs to load.
 
 ## Quick Start
 
-In Claude Code, invoke an agent like this:
+Open Claude Code in this repo and say:
 
 ```
-Read /prompts/pm-problem-discovery.md for your role.
-Check /sources/ for reference materials, then read /docs/pdb.md if it exists.
-I need to define the problem for [your product idea].
+be CTO-Architect
 ```
 
-Or for implementation:
+That's it. `CLAUDE.md` tells Claude to read `/prompts/cto-architect.md` for the role definition, then load `/docs/prd.md`, `/docs/pdb.md`, `/docs/sdb.md`, and `/docs/decision-log.md` for context. No manual file references needed.
 
-```
-Read /prompts/cto-implementation.md for your role.
-Read /docs/prd.md and /docs/architecture.md for context.
-Implement the next item in /docs/backlog.md.
-```
+### All agent triggers
+
+| You say | Agent activated |
+|---|---|
+| "be PM-Problem-Discovery" / "discover the problem" | PM-Problem-Discovery |
+| "be PM-Solution-Discovery" / "explore solutions" | PM-Solution-Discovery |
+| "be PM-Requirements" / "write requirements" | PM-Requirements |
+| "be CTO-Architect" / "design the architecture" | CTO-Architect |
+| "be CTO-Implementation" / "build" / "implement" | CTO-Implementation |
+| "be DS-Strategy" / "evaluate ML" | DS-Strategy |
+| "be DS-Engineering" / "build ML" | DS-Engineering |
+| "be QA-Review" / "review code" | QA-Review |
+| "be QA-Acceptance" / "acceptance test" | QA-Acceptance |
+
+### Shorthand commands
+
+- **"next backlog item"** — Finds the first non-Done item in `/docs/backlog.md` and implements it as CTO-Implementation.
+- **"update the PRD"** — Opens `/docs/prd.md` as PM-Requirements for surgical edits.
+- **"review"** (no qualifier) — Runs QA-Review against `/docs/prd.md` acceptance criteria.
 
 ## Repo Structure
 
 ```
 /your-product/
-├── /prompts                    # Agent role definitions (this directory)
+├── CLAUDE.md                      # Auto-bootstrap: agent dispatch + project context
+├── /prompts                       # Agent role definitions (read-only reference)
 │   ├── pm-problem-discovery.md
 │   ├── pm-solution-discovery.md
 │   ├── pm-requirements.md
@@ -36,31 +51,31 @@ Implement the next item in /docs/backlog.md.
 │   ├── ds-engineering.md
 │   ├── qa-review.md
 │   └── qa-acceptance.md
-├── /sources                    # Founder-provided reference materials
+├── /sources                       # Founder-provided reference materials
 │   ├── (articles, papers, guidelines, regulatory docs, competitor analysis...)
-│   └── README.md               # Optional: index of what each source is and why it's here
-├── /docs                       # Shared artifacts (the "Project Knowledge")
-│   ├── pdb.md                  # Problem Definition Brief
-│   ├── sdb.md                  # Solution Discovery Brief
-│   ├── prd.md                  # Product Requirements Document
-│   ├── architecture.md         # System architecture + ADRs
-│   ├── backlog.md              # Prioritized backlog
-│   ├── decision-log.md         # Decision history
-│   ├── deployment.md           # Deployment guide
-│   ├── model-spec.md           # ML model specification (if applicable)
-│   ├── model-eval-report.md    # ML evaluation results (if applicable)
-│   ├── qa-review-notes.md      # QA findings
-│   ├── release-readiness.md    # Go/no-go assessment
-│   └── kpis.md                 # Success metrics (if complex)
-├── /src                        # Application code
-├── /tests                      # Test suites
-│   └── /acceptance             # Acceptance test scripts
-├── /ml                         # ML code (if applicable)
-│   ├── /prompts                # LLM system prompts (if using foundation models)
-│   ├── /pipelines              # Data pipelines
-│   ├── /models                 # Training and evaluation
-│   ├── /serving                # Model serving
-│   └── /experiments            # Experiment log
+│   └── README.md                  # Optional: index of what each source is and why it's here
+├── /docs                          # Shared artifacts (the "Project Knowledge")
+│   ├── pdb.md                     # Problem Definition Brief
+│   ├── sdb.md                     # Solution Discovery Brief
+│   ├── prd.md                     # Product Requirements Document
+│   ├── architecture.md            # System architecture + ADRs
+│   ├── backlog.md                 # Prioritized backlog
+│   ├── decision-log.md            # Decision history
+│   ├── deployment.md              # Deployment guide
+│   ├── model-spec.md              # ML model specification (if applicable)
+│   ├── model-eval-report.md       # ML evaluation results (if applicable)
+│   ├── qa-review-notes.md         # QA findings
+│   ├── release-readiness.md       # Go/no-go assessment
+│   └── kpis.md                    # Success metrics (if complex)
+├── /src                           # Application code
+├── /tests                         # Test suites
+│   └── /acceptance                # Acceptance test scripts
+├── /ml                            # ML code (if applicable)
+│   ├── /prompts                   # LLM system prompts (if using foundation models)
+│   ├── /pipelines                 # Data pipelines
+│   ├── /models                    # Training and evaluation
+│   ├── /serving                   # Model serving
+│   └── /experiments               # Experiment log
 └── README.md
 ```
 
@@ -139,9 +154,9 @@ Downstream agents (CTO, DS, QA) read /docs/ artifacts
 
 Sources aren't just a day-one input. You can add new materials at any phase:
 
-- Found a relevant paper while building? Drop it in `/sources/` and re-invoke PM-Requirements: "Read /prompts/pm-requirements.md. I've added a new source in /sources/[filename]. Assess its impact on the current PRD."
-- Got feedback from a stakeholder? Save it as a markdown file in `/sources/` and re-invoke PM-Problem-Discovery to update the PDB.
-- Received API docs from a vendor? Drop them in `/sources/` and invoke CTO-Architect to update the integration architecture.
+- Found a relevant paper while building? Drop it in `/sources/` and say: "be PM-Requirements. I've added a new source in /sources/[filename]. Assess its impact on the current PRD."
+- Got feedback from a stakeholder? Save it as a markdown file in `/sources/` and say: "be PM-Problem-Discovery — update the PDB with the new stakeholder feedback."
+- Received API docs from a vendor? Drop them in `/sources/` and say: "be CTO-Architect — update the integration architecture."
 
 The agents are designed to handle incremental source updates without regenerating everything from scratch.
 
@@ -149,114 +164,111 @@ The agents are designed to handle incremental source updates without regeneratin
 
 ### Phase 1: Discovery (Day 1)
 ```
-Agent: pm-problem-discovery
+Agent: PM-Problem-Discovery
 Input: Your idea + source materials (if any)
 Output: /docs/pdb.md
 ```
 
 **Without sources:**
-"Read /prompts/pm-problem-discovery.md. Here's what I want to build: [describe the problem or idea]."
+"discover the problem — here's what I want to build: [describe the problem or idea]."
 
 **With sources already in `/sources/`:**
-"Read /prompts/pm-problem-discovery.md. Check /sources/ for reference materials I've provided. Here's the problem I want to explore: [describe the problem]. The sources include [brief note on what you've provided and why]."
-
-**With inline sources:**
-"Read /prompts/pm-problem-discovery.md. Here's a research paper that describes the problem space: [paste or attach]. I want to build a product that addresses [specific aspect]. Use this as primary context."
+"discover the problem — the sources include [brief note on what you've provided and why]. Here's the problem I want to explore: [describe the problem]."
 
 **Strict source mode:**
-"Read /prompts/pm-problem-discovery.md. Read /sources/clinical-guideline.md. This is the definitive protocol — define the problem strictly based on what this guideline describes. Don't introduce outside assumptions."
+"be PM-Problem-Discovery. /sources/clinical-guideline.md is the definitive protocol — define the problem strictly based on what this guideline describes. Don't introduce outside assumptions."
 
 ### Phase 2: Solution Discovery (Day 1-2)
 ```
-Agent: pm-solution-discovery
+Agent: PM-Solution-Discovery
 Input: /docs/pdb.md, /sources/* (if any)
 Output: /docs/sdb.md (Solution Discovery Brief)
 ```
 
 **Standard:**
-"Read /prompts/pm-solution-discovery.md. Check /sources/ for reference materials, then read /docs/pdb.md. Explore solution approaches for this problem."
+"explore solutions"
 
 **With a founder leaning:**
-"Read /prompts/pm-solution-discovery.md. Read /docs/pdb.md. I'm leaning toward a browser-based educational game — evaluate that alongside alternatives."
+"explore solutions — I'm leaning toward a browser-based educational game, evaluate that alongside alternatives."
 
 **Updating after new info:**
-"Read /prompts/pm-solution-discovery.md. Read /docs/sdb.md. I've added /sources/competitor-teardown.md — reassess the recommendation in light of this."
+"be PM-Solution-Discovery. I've added /sources/competitor-teardown.md — reassess the recommendation in light of this."
 
 ### Phase 3: Feasibility (Day 2-3)
 ```
-Agent: cto-architect (for technical feasibility)
-Agent: ds-strategy (if ML is involved)
+Agent: CTO-Architect (for technical feasibility)
+Agent: DS-Strategy (if ML is involved)
 Input: /docs/pdb.md, /docs/sdb.md
 Output: Preliminary /docs/architecture.md, /docs/model-spec.md (if applicable)
 ```
-**You say:** "Read /prompts/cto-architect.md. Read /docs/pdb.md and /docs/sdb.md. Give me a preliminary architecture assessment — is this buildable? What's the simplest stack?"
+**You say:** "be CTO-Architect — give me a preliminary architecture assessment. Is this buildable? What's the simplest stack?"
 
 If ML is involved:
-**You say:** "Read /prompts/ds-strategy.md. Read /docs/pdb.md and /docs/sdb.md. Is this ML-tractable? What's the simplest approach?"
+**You say:** "evaluate ML — is this ML-tractable? What's the simplest approach?"
 
 ### Phase 4: Requirements (Day 3-4)
 ```
-Agent: pm-requirements
+Agent: PM-Requirements
 Input: /docs/pdb.md, /docs/sdb.md, /docs/architecture.md, /sources/* (if any)
 Output: /docs/prd.md, /docs/backlog.md, /docs/decision-log.md
 ```
 
 **Standard:**
-"Read /prompts/pm-requirements.md. Check /sources/ for reference materials, then read /docs/pdb.md, /docs/sdb.md, and /docs/architecture.md. Draft the PRD with a Pilot-first scope."
+"write requirements — draft the PRD with a Pilot-first scope."
 
 **With regulatory source:**
-"Read /prompts/pm-requirements.md. Check /sources/ — I've added the HIPAA sections relevant to our product. Read /docs/pdb.md, /docs/sdb.md, and /docs/architecture.md. Draft the PRD and make sure every HIPAA-derived requirement is explicitly cited and testable."
+"write requirements — I've added the HIPAA sections relevant to our product in /sources/. Make sure every HIPAA-derived requirement is explicitly cited and testable."
 
 **Updating PRD with new source:**
-"Read /prompts/pm-requirements.md. I've added /sources/vendor-api-docs.md. Assess how this affects the current PRD — specifically integration requirements in Section 7."
+"update the PRD — I've added /sources/vendor-api-docs.md. Assess how this affects integration requirements in Section 7."
 
 ### Phase 5: Architecture (Day 4-5)
 ```
-Agent: cto-architect
+Agent: CTO-Architect
 Input: /docs/prd.md, /docs/sdb.md
 Output: Full /docs/architecture.md with ADRs, tech stack, data model
 ```
-**You say:** "Read /prompts/cto-architect.md. Read /docs/prd.md and /docs/sdb.md. Produce the full system architecture."
+**You say:** "design the architecture"
 
 If ML is involved:
 ```
-Agent: ds-strategy
+Agent: DS-Strategy
 Input: /docs/prd.md, /docs/architecture.md
 Output: /docs/model-spec.md
 ```
 
 ### Phase 6: Build (Days 6-20+)
 ```
-Agent: cto-implementation
+Agent: CTO-Implementation
 Input: /docs/prd.md, /docs/architecture.md, /docs/backlog.md
 Output: /src, /tests, API docs
 ```
-**You say:** "Read /prompts/cto-implementation.md. Read /docs/prd.md, /docs/architecture.md, and /docs/backlog.md. Implement the top backlog item."
+**You say:** "next backlog item"
 
 Repeat for each backlog item. This is where you spend most of your time.
 
 If ML is involved:
 ```
-Agent: ds-engineering
+Agent: DS-Engineering
 Input: /docs/model-spec.md, /docs/architecture.md
 Output: /ml/*, model serving endpoints
 ```
 
 ### Phase 7: Review (Ongoing + Pre-Release)
 ```
-Agent: qa-review
+Agent: QA-Review
 Input: /src, /docs/prd.md, /docs/architecture.md
 Output: /docs/qa-review-notes.md
 ```
-**You say:** "Read /prompts/qa-review.md. Review the code in /src against the PRD acceptance criteria in /docs/prd.md. Check for security and compliance."
+**You say:** "review"
 
 ### Phase 8: Acceptance + Release (Pre-Launch)
 ```
-Agent: qa-acceptance
+Agent: QA-Acceptance
 Input: /docs/prd.md, /docs/architecture.md, /docs/qa-review-notes.md
 Output: /docs/release-readiness.md
 ```
-**You say:** "Read /prompts/qa-acceptance.md. Run acceptance tests against the deployed staging environment. Produce the release readiness report."
+**You say:** "acceptance test"
 
 ## Tips for Solo Operation
 
@@ -266,7 +278,7 @@ Output: /docs/release-readiness.md
 
 3. **Run QA-Review after every 2-3 features**, not just before release. Catching a security issue early is 10x cheaper than catching it in production.
 
-4. **The decision log is your memory.** When you come back to the project after a week off, `/docs/decision-log.md` tells you what was decided and why.
+4. **The decision log is your memory.** When you come back to the project after a week off, `/docs/decision-log.md` tells you what was decided and why. Each entry records the **Agent** and **Phase**, so you know exactly who to re-invoke if a decision needs revisiting.
 
 5. **Phase aggressively.** Your pilot should be embarrassingly small. PM-Requirements will help you cut scope.
 
