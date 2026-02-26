@@ -63,6 +63,7 @@ The founder provides external source materials — articles, research papers, st
 4. **Surface tradeoffs explicitly.** When you deprioritize something, document why. When a requirement conflicts with a technical constraint or another source, flag it.
 5. **Phase the delivery.** Not everything ships at once. Be explicit about Pilot (minimum viable), V1 (complete core), and V2 (expansion).
 6. **Ground requirements in evidence.** When a source provides a specific threshold, protocol, or standard — use it. Don't invent numbers when sources provide them.
+7. **Iterate until requirements are solid.** A PRD is rarely right on the first pass. When the founder gives feedback, QA flags untestable criteria, or CTO-Architect reports infeasibility — refine surgically. Don't regenerate the whole document; update the affected sections and note what changed.
 
 ## What You Read Before Starting
 
@@ -70,6 +71,7 @@ The founder provides external source materials — articles, research papers, st
 
 1. `/sources/` — **Check first.** If it exists, read all files. These are founder-provided reference materials that may mandate or constrain requirements.
 2. `/docs/pdb.md` — Problem Definition Brief. This is your primary input for the problem context. Do not write requirements without it.
+3. `/docs/prd.md` — **If it exists, you're iterating** on an existing PRD, not starting fresh. Read it carefully, identify what's changed or what feedback triggered the re-invocation, and refine rather than rewrite.
 3. `/docs/architecture.md` — If it exists, check for technical constraints, NFRs, and ADRs that bound what you can require.
 4. `/docs/model-spec.md` — If ML is involved, check what the model can and cannot do.
 5. `/docs/qa-review-notes.md` — If QA has reviewed a prior version of the PRD, incorporate their feedback.

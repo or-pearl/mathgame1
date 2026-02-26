@@ -162,6 +162,8 @@ The agents are designed to handle incremental source updates without regeneratin
 
 ## Workflow: Idea → Shipped Product
 
+> **Every phase is iterative.** The day ranges below are optimistic first-pass estimates. Re-invoke any agent as many times as needed — agents detect when their artifact already exists and refine rather than regenerate. A phase is done when the founder validates the output, not when the agent produces a first draft.
+
 ### Phase 1: Discovery (Day 1)
 ```
 Agent: PM-Problem-Discovery
@@ -178,6 +180,9 @@ Output: /docs/pdb.md
 **Strict source mode:**
 "be PM-Problem-Discovery. /sources/clinical-guideline.md is the definitive protocol — define the problem strictly based on what this guideline describes. Don't introduce outside assumptions."
 
+**Iterating:**
+"discover the problem — the personas feel too broad, sharpen them based on our actual pilot audience."
+
 ### Phase 2: Solution Discovery (Day 1-2)
 ```
 Agent: PM-Solution-Discovery
@@ -191,7 +196,7 @@ Output: /docs/sdb.md (Solution Discovery Brief)
 **With a founder leaning:**
 "explore solutions — I'm leaning toward a browser-based educational game, evaluate that alongside alternatives."
 
-**Updating after new info:**
+**Iterating / updating after new info:**
 "be PM-Solution-Discovery. I've added /sources/competitor-teardown.md — reassess the recommendation in light of this."
 
 ### Phase 3: Feasibility (Day 2-3)
@@ -230,6 +235,9 @@ Output: Full /docs/architecture.md with ADRs, tech stack, data model
 ```
 **You say:** "design the architecture"
 
+**Iterating after implementation feedback:**
+"be CTO-Architect — CTO-Implementation found that [issue]. Update the architecture to address this."
+
 If ML is involved:
 ```
 Agent: DS-Strategy
@@ -245,7 +253,7 @@ Output: /src, /tests, API docs
 ```
 **You say:** "next backlog item"
 
-Repeat for each backlog item. This is where you spend most of your time.
+Repeat for each backlog item. This is where you spend most of your time. After QA-Review, re-invoke to fix findings: "build — address the QA findings in /docs/qa-review-notes.md."
 
 If ML is involved:
 ```
@@ -274,18 +282,20 @@ Output: /docs/release-readiness.md
 
 1. **Don't skip discovery.** 45 minutes with PM-Problem-Discovery saves weeks of building the wrong thing.
 
-2. **Drop sources before you start, not after.** If you have research, guidelines, or competitor analysis, put it in `/sources/` before invoking PM-Problem-Discovery. It's much cheaper to inform the problem definition upfront than to retrofit sources into a half-built PRD.
+2. **Iterate at every step.** No agent output should be accepted on the first pass. Re-invoke the same agent to refine, challenge, and sharpen its output until you're confident. A second pass on the PDB costs minutes; discovering a bad assumption in Week 3 of build costs days.
 
-3. **Run QA-Review after every 2-3 features**, not just before release. Catching a security issue early is 10x cheaper than catching it in production.
+3. **Drop sources before you start, not after.** If you have research, guidelines, or competitor analysis, put it in `/sources/` before invoking PM-Problem-Discovery. It's much cheaper to inform the problem definition upfront than to retrofit sources into a half-built PRD.
 
-4. **Start every session with the dashboard.** `/docs/status.md` answers "where are we?" in one file — artifact checklist, backlog progress, recent decisions, and blockers. The decision log (`/docs/decision-log.md`) goes deeper: each entry records the **Agent** and **Phase**, so you know exactly who to re-invoke if a decision needs revisiting.
+4. **Run QA-Review after every 2-3 features**, not just before release. Catching a security issue early is 10x cheaper than catching it in production.
 
-5. **Phase aggressively.** Your pilot should be embarrassingly small. PM-Requirements will help you cut scope.
+5. **Start every session with the dashboard.** `/docs/status.md` answers "where are we?" in one file — artifact checklist, backlog progress, recent decisions, and blockers. The decision log (`/docs/decision-log.md`) goes deeper: each entry records the **Agent** and **Phase**, so you know exactly who to re-invoke if a decision needs revisiting.
 
-6. **Git commit after every agent session.** Commit messages like "PM-Requirements: updated PRD scope for pilot" or "QA-Review: security review round 1" make the project history readable. Commit source files too — they're part of your project's evidence base.
+6. **Phase aggressively.** Your pilot should be embarrassingly small. PM-Requirements will help you cut scope.
 
-7. **When agents disagree**, that's a feature, not a bug. If CTO-Architect says a requirement is infeasible and PM-Requirements insists it's critical, you (the founder) make the call and document it in the decision log.
+7. **Git commit after every agent session.** Commit messages like "PM-Requirements: updated PRD scope for pilot" or "QA-Review: security review round 1" make the project history readable. Commit source files too — they're part of your project's evidence base.
 
-8. **Source quality matters.** A peer-reviewed paper and a random blog post should not carry equal weight. PM-Problem-Discovery and PM-Requirements are instructed to challenge sources — but you should also curate what you put in `/sources/`. Garbage in, garbage out.
+8. **When agents disagree**, that's a feature, not a bug. If CTO-Architect says a requirement is infeasible and PM-Requirements insists it's critical, you (the founder) make the call and document it in the decision log.
 
-9. **Don't over-source.** Five well-chosen references are better than 30 loosely relevant articles. Each source the agents read takes context window space and processing time. Be selective.
+9. **Source quality matters.** A peer-reviewed paper and a random blog post should not carry equal weight. PM-Problem-Discovery and PM-Requirements are instructed to challenge sources — but you should also curate what you put in `/sources/`. Garbage in, garbage out.
+
+10. **Don't over-source.** Five well-chosen references are better than 30 loosely relevant articles. Each source the agents read takes context window space and processing time. Be selective.

@@ -48,6 +48,7 @@ See `/docs/status.md` for the full project dashboard (artifact checklist, backlo
 
 ## Conventions
 
+- **Iteration is the norm.** No agent output is expected to be right on the first pass. Re-invoke any agent to refine its artifact — agents detect when their output already exists and refine rather than regenerate. The founder validates each deliverable through as many iterations as needed before moving to the next phase.
 - **Commits:** Reference the agent and artifact, e.g. "PM-Requirements: update PRD scope for pilot"
 - **Decision log:** When any agent makes a significant choice or encounters a conflict, append to `/docs/decision-log.md`. Every entry must include the **Agent** (who made the decision) and **Phase** (workflow phase) columns so the founder can trace decisions back to their source.
 - **Backlog status:** Mark items as `Done` / `In Progress` / `Not Started` in `/docs/backlog.md` as work progresses
