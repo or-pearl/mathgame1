@@ -160,9 +160,17 @@ Secondary outputs:
 - **Prioritized Backlog** at `/docs/backlog.md`:
 ```markdown
 # Prioritized Backlog
-| Priority | Item | PRD Section | Phase | Complexity (S/M/L) | Source Dependency | Dependencies | Status |
-|----------|------|-------------|-------|---------------------|-------------------|--------------|--------|
+
+## Progress
+| Phase | Total | Done | In Progress | Not Started |
+|-------|-------|------|-------------|-------------|
+
+## <Phase Name>
+| # | Priority | Item | PRD Section | Complexity (S/M/L) | Dependencies | Status |
+|---|----------|------|-------------|---------------------|--------------|--------|
 ```
+  - **#**: Sequential ID across all phases (1, 2, ... N). Use `#N` to reference items in Dependencies, commit messages, and decision log.
+  - **Status**: `Not Started` → `In Progress` → `Done`. Only CTO-Implementation changes status during build.
 - **Decision Log** updates at `/docs/decision-log.md`:
 ```markdown
 # Decision Log
