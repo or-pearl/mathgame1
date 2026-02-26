@@ -28,6 +28,7 @@ Implement the next item in /docs/backlog.md.
 /your-product/
 ├── /prompts                    # Agent role definitions (this directory)
 │   ├── pm-problem-discovery.md
+│   ├── pm-solution-discovery.md
 │   ├── pm-requirements.md
 │   ├── cto-architect.md
 │   ├── cto-implementation.md
@@ -40,6 +41,7 @@ Implement the next item in /docs/backlog.md.
 │   └── README.md               # Optional: index of what each source is and why it's here
 ├── /docs                       # Shared artifacts (the "Project Knowledge")
 │   ├── pdb.md                  # Problem Definition Brief
+│   ├── sdb.md                  # Solution Discovery Brief
 │   ├── prd.md                  # Product Requirements Document
 │   ├── architecture.md         # System architecture + ADRs
 │   ├── backlog.md              # Prioritized backlog
@@ -164,41 +166,57 @@ Output: /docs/pdb.md
 **Strict source mode:**
 "Read /prompts/pm-problem-discovery.md. Read /sources/clinical-guideline.md. This is the definitive protocol — define the problem strictly based on what this guideline describes. Don't introduce outside assumptions."
 
-### Phase 2: Feasibility (Day 1-2)
+### Phase 2: Solution Discovery (Day 1-2)
+```
+Agent: pm-solution-discovery
+Input: /docs/pdb.md, /sources/* (if any)
+Output: /docs/sdb.md (Solution Discovery Brief)
+```
+
+**Standard:**
+"Read /prompts/pm-solution-discovery.md. Check /sources/ for reference materials, then read /docs/pdb.md. Explore solution approaches for this problem."
+
+**With a founder leaning:**
+"Read /prompts/pm-solution-discovery.md. Read /docs/pdb.md. I'm leaning toward a browser-based educational game — evaluate that alongside alternatives."
+
+**Updating after new info:**
+"Read /prompts/pm-solution-discovery.md. Read /docs/sdb.md. I've added /sources/competitor-teardown.md — reassess the recommendation in light of this."
+
+### Phase 3: Feasibility (Day 2-3)
 ```
 Agent: cto-architect (for technical feasibility)
 Agent: ds-strategy (if ML is involved)
-Input: /docs/pdb.md
+Input: /docs/pdb.md, /docs/sdb.md
 Output: Preliminary /docs/architecture.md, /docs/model-spec.md (if applicable)
 ```
-**You say:** "Read /prompts/cto-architect.md. Read /docs/pdb.md. Give me a preliminary architecture assessment — is this buildable? What's the simplest stack?"
+**You say:** "Read /prompts/cto-architect.md. Read /docs/pdb.md and /docs/sdb.md. Give me a preliminary architecture assessment — is this buildable? What's the simplest stack?"
 
 If ML is involved:
-**You say:** "Read /prompts/ds-strategy.md. Read /docs/pdb.md. Is this ML-tractable? What's the simplest approach?"
+**You say:** "Read /prompts/ds-strategy.md. Read /docs/pdb.md and /docs/sdb.md. Is this ML-tractable? What's the simplest approach?"
 
-### Phase 3: Requirements (Day 2-3)
+### Phase 4: Requirements (Day 3-4)
 ```
 Agent: pm-requirements
-Input: /docs/pdb.md, /docs/architecture.md, /sources/* (if any)
+Input: /docs/pdb.md, /docs/sdb.md, /docs/architecture.md, /sources/* (if any)
 Output: /docs/prd.md, /docs/backlog.md, /docs/decision-log.md
 ```
 
 **Standard:**
-"Read /prompts/pm-requirements.md. Check /sources/ for reference materials, then read /docs/pdb.md and /docs/architecture.md. Draft the PRD with a Pilot-first scope."
+"Read /prompts/pm-requirements.md. Check /sources/ for reference materials, then read /docs/pdb.md, /docs/sdb.md, and /docs/architecture.md. Draft the PRD with a Pilot-first scope."
 
 **With regulatory source:**
-"Read /prompts/pm-requirements.md. Check /sources/ — I've added the HIPAA sections relevant to our product. Read /docs/pdb.md and /docs/architecture.md. Draft the PRD and make sure every HIPAA-derived requirement is explicitly cited and testable."
+"Read /prompts/pm-requirements.md. Check /sources/ — I've added the HIPAA sections relevant to our product. Read /docs/pdb.md, /docs/sdb.md, and /docs/architecture.md. Draft the PRD and make sure every HIPAA-derived requirement is explicitly cited and testable."
 
 **Updating PRD with new source:**
 "Read /prompts/pm-requirements.md. I've added /sources/vendor-api-docs.md. Assess how this affects the current PRD — specifically integration requirements in Section 7."
 
-### Phase 4: Architecture (Day 3-4)
+### Phase 5: Architecture (Day 4-5)
 ```
 Agent: cto-architect
-Input: /docs/prd.md
+Input: /docs/prd.md, /docs/sdb.md
 Output: Full /docs/architecture.md with ADRs, tech stack, data model
 ```
-**You say:** "Read /prompts/cto-architect.md. Read /docs/prd.md. Produce the full system architecture."
+**You say:** "Read /prompts/cto-architect.md. Read /docs/prd.md and /docs/sdb.md. Produce the full system architecture."
 
 If ML is involved:
 ```
@@ -207,7 +225,7 @@ Input: /docs/prd.md, /docs/architecture.md
 Output: /docs/model-spec.md
 ```
 
-### Phase 5: Build (Days 5-20+)
+### Phase 6: Build (Days 6-20+)
 ```
 Agent: cto-implementation
 Input: /docs/prd.md, /docs/architecture.md, /docs/backlog.md
@@ -224,7 +242,7 @@ Input: /docs/model-spec.md, /docs/architecture.md
 Output: /ml/*, model serving endpoints
 ```
 
-### Phase 6: Review (Ongoing + Pre-Release)
+### Phase 7: Review (Ongoing + Pre-Release)
 ```
 Agent: qa-review
 Input: /src, /docs/prd.md, /docs/architecture.md
@@ -232,7 +250,7 @@ Output: /docs/qa-review-notes.md
 ```
 **You say:** "Read /prompts/qa-review.md. Review the code in /src against the PRD acceptance criteria in /docs/prd.md. Check for security and compliance."
 
-### Phase 7: Acceptance + Release (Pre-Launch)
+### Phase 8: Acceptance + Release (Pre-Launch)
 ```
 Agent: qa-acceptance
 Input: /docs/prd.md, /docs/architecture.md, /docs/qa-review-notes.md
