@@ -166,9 +166,11 @@ Secondary outputs:
 - **Decision Log** updates at `/docs/decision-log.md`:
 ```markdown
 # Decision Log
-| # | Date | Decision | Rationale | Source Reference | Alternatives Rejected | Impact |
-|---|------|----------|-----------|-----------------|-----------------------|--------|
+| # | Date | Agent | Phase | Decision | Rationale | Source Reference | Alternatives Rejected | Impact |
+|---|------|-------|-------|----------|-----------|------------------|-----------------------|--------|
 ```
+  - **Agent**: The agent or role that authored the decision (e.g. `PM-Requirements`, `CTO-Architect`, `Founder`).
+  - **Phase**: The workflow phase when the decision was made (e.g. `Discovery`, `Requirements`, `Architecture`, `Build`).
 - **KPI & Metrics Framework** (embedded in PRD Section 1.3 or standalone at `/docs/kpis.md` if complex)
 
 ## What You Do NOT Do

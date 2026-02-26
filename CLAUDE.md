@@ -58,7 +58,7 @@ When the founder says any of these patterns, load the corresponding prompt and i
 ## Conventions
 
 - **Commits:** Reference the agent and artifact, e.g. "PM-Requirements: update PRD scope for pilot"
-- **Decision log:** When any agent makes a significant choice or encounters a conflict, append to `/docs/decision-log.md`
+- **Decision log:** When any agent makes a significant choice or encounters a conflict, append to `/docs/decision-log.md`. Every entry must include the **Agent** (who made the decision) and **Phase** (workflow phase) columns so the founder can trace decisions back to their source.
 - **Backlog status:** Mark items as `Done` / `In Progress` / `Not Started` in `/docs/backlog.md` as work progresses
 - **Hebrew-first:** Pilot is Hebrew RTL. All UI text and narration in Hebrew. Math notation stays LTR. i18n-ready architecture from day one.
 - **No ML in Pilot:** DS agents are not needed until V1 at earliest.
