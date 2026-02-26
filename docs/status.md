@@ -9,7 +9,7 @@
 | Problem Definition Brief | `/docs/pdb.md` | Done | PM-Problem-Discovery | Covers personas, JTBD, constraints, evidence base |
 | Solution Discovery Brief | `/docs/sdb.md` | Not started | — | Blocked on: founder invoking PM-Solution-Discovery |
 | Product Requirements Doc | `/docs/prd.md` | Done | PM-Requirements | 40KB, 10 sections, Hebrew-first pilot scope |
-| Backlog | `/docs/backlog.md` | Done | PM-Requirements | 25+ items across Pilot / V1 / V2 |
+| Backlog | `/docs/backlog.md` | Done | PM-Requirements | 35 items across Pilot / V1 / V2 (IDs #1–#35) |
 | Decision Log | `/docs/decision-log.md` | Active | PM-Requirements | 11 decisions logged |
 | Architecture | `/docs/architecture.md` | Not started | — | Next major milestone |
 | Source Index | `/sources/README.md` | Done | — | 7 pedagogical references indexed |
@@ -24,12 +24,12 @@
 
 ### Next up (top Pilot items)
 
-| Priority | Item | Complexity | Blocked by |
-|----------|------|------------|------------|
-| P0 | Gem-splitting core mechanic | L | Architecture |
-| P0 | Audio narration system (Hebrew TTS) | M | Architecture |
-| P0 | Hebrew language UI and RTL layout | M | Architecture |
-| P0 | i18n framework setup | M | Architecture |
+| # | Priority | Item | Complexity | Blocked by |
+|---|----------|------|------------|------------|
+| 1 | P0 | Gem-splitting core mechanic | L | Architecture |
+| 2 | P0 | Audio narration system (Hebrew TTS) | M | Architecture |
+| 3 | P0 | Hebrew language UI and RTL layout | M | Architecture |
+| 4 | P0 | i18n framework setup | M | Architecture |
 
 ## Recent Decisions
 

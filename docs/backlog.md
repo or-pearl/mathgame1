@@ -1,52 +1,59 @@
 # Prioritized Backlog
 
+## Progress
+
+| Phase | Total | Done | In Progress | Not Started |
+|-------|-------|------|-------------|-------------|
+| Pilot | 18 | 0 | 0 | 18 |
+| V1 | 10 | 0 | 0 | 10 |
+| V2+ | 7 | 0 | 0 | 7 |
+
 ## Pilot (MVP)
 
-| Priority | Item | PRD Section | Phase | Complexity | Source Dependency | Dependencies | Status |
-|----------|------|-------------|-------|------------|-------------------|--------------|--------|
-| P0 | Gem-splitting core mechanic (drag-to-split, animate, display equation) | 4.1 | Pilot | L | Four Essential Mental Math Strategies | None | Not Started |
-| P0 | Audio narration system (Hebrew TTS, speaker toggle, autoplay handling) | 4.9 | Pilot | M | PDB Constraint (emerging reading skills) | None | Not Started |
-| P0 | Hebrew language UI and RTL layout (all text, menus, navigation in Hebrew RTL; math notation stays LTR) | 1.1, 8.1 | Pilot | M | Founder decision (Israeli market first) | None | Not Started |
-| P0 | i18n framework setup (externalize all UI strings and narration text into locale files; Hebrew as default locale) | 3.3 | Pilot | M | Decision #10 (Hebrew-first with planned EN/ES expansion) | None | Not Started |
-| P1 | World 1 — "Learning to Split" (5–6 levels, free exploration of splits) | 4.2 | Pilot | M | Strategic Activities (extended practice) | 4.1 | Not Started |
-| P1 | World 2 — "Making Tens" (8–10 levels, combine splits to make 10, Power Gem animation) | 4.3 | Pilot | L | Four Essential Mental Math Strategies (friendly numbers) | 4.1 | Not Started |
-| P2 | World 3 — "Treasure Chest Challenge" (6–8 levels, multi-addend decomposition) | 4.4 | Pilot | L | Four Essential Mental Math Strategies (multi-addend example) | 4.1, 4.3 | Not Started |
-| P2 | Progress map (cave-themed level map, completion tracking, localStorage persistence) | 4.7 | Pilot | M | PDB (engagement) | None | Not Started |
-| P2 | Hint system — Tier 1 (ghost splitter after 2 failed attempts) | 4.8 | Pilot | S | Five Common Mistakes (scaffolding) | 4.1 | Not Started |
-| P3 | Celebration & feedback animations (Power Gem fusion, treasure chest open, error bounce-back) | 4.1, 4.3 | Pilot | M | None | 4.1 | Not Started |
-| P3 | Hebrew narration scripts (write all narrator dialogue, feedback messages, and equation read-aloud text in Hebrew) | 4.9, 8.4 | Pilot | M | Decision #10 | Audio narration system | Not Started |
-| P3 | Hebrew font selection (sans-serif font with full niqqud/vowel diacritics support for early readers) | 8.1 | Pilot | S | Decision #10 | None | Not Started |
-| P3 | Title screen + settings overlay (play button, audio toggles) | 8.3 | Pilot | S | None | None | Not Started |
-| P3 | Level complete screen (equation summary, replay/next/map buttons) | 8.3 | Pilot | S | None | 4.1 | Not Started |
-| P3 | 10-frame gem layout for World 2 | 4.3 | Pilot | S | Strategic Activities (10-frame scaffold) | 4.1 | Not Started |
-| P4 | Basic anonymous analytics event logging (level_start, level_complete, split_action, hint_triggered) | 5.5 | Pilot | M | None | None | Not Started |
-| P4 | Cross-browser testing (Chrome on Chromebook + Safari on iPad) | 5.1, 9.1 | Pilot | M | PDB Constraint (device support) | All Pilot items | Not Started |
-| P4 | WCAG 2.1 AA accessibility pass (aria-labels, keyboard nav, color contrast) | 5.3 | Pilot | M | PDB Constraint (WCAG) | All Pilot items | Not Started |
+| # | Priority | Item | PRD Section | Complexity | Dependencies | Status |
+|---|----------|------|-------------|------------|--------------|--------|
+| 1 | P0 | Gem-splitting core mechanic (drag-to-split, animate, display equation) | 4.1 | L | None | Not Started |
+| 2 | P0 | Audio narration system (Hebrew TTS, speaker toggle, autoplay handling) | 4.9 | M | None | Not Started |
+| 3 | P0 | Hebrew language UI and RTL layout (all text, menus, navigation in Hebrew RTL; math notation stays LTR) | 1.1, 8.1 | M | None | Not Started |
+| 4 | P0 | i18n framework setup (externalize all UI strings and narration text into locale files; Hebrew as default locale) | 3.3 | M | None | Not Started |
+| 5 | P1 | World 1 — "Learning to Split" (5–6 levels, free exploration of splits) | 4.2 | M | #1 | Not Started |
+| 6 | P1 | World 2 — "Making Tens" (8–10 levels, combine splits to make 10, Power Gem animation) | 4.3 | L | #1 | Not Started |
+| 7 | P2 | World 3 — "Treasure Chest Challenge" (6–8 levels, multi-addend decomposition) | 4.4 | L | #1, #6 | Not Started |
+| 8 | P2 | Progress map (cave-themed level map, completion tracking, localStorage persistence) | 4.7 | M | None | Not Started |
+| 9 | P2 | Hint system — Tier 1 (ghost splitter after 2 failed attempts) | 4.8 | S | #1 | Not Started |
+| 10 | P3 | Celebration & feedback animations (Power Gem fusion, treasure chest open, error bounce-back) | 4.1, 4.3 | M | #1 | Not Started |
+| 11 | P3 | Hebrew narration scripts (write all narrator dialogue, feedback messages, and equation read-aloud text in Hebrew) | 4.9, 8.4 | M | #2 | Not Started |
+| 12 | P3 | Hebrew font selection (sans-serif font with full niqqud/vowel diacritics support for early readers) | 8.1 | S | None | Not Started |
+| 13 | P3 | Title screen + settings overlay (play button, audio toggles) | 8.3 | S | None | Not Started |
+| 14 | P3 | Level complete screen (equation summary, replay/next/map buttons) | 8.3 | S | #1 | Not Started |
+| 15 | P3 | 10-frame gem layout for World 2 | 4.3 | S | #1 | Not Started |
+| 16 | P4 | Basic anonymous analytics event logging (level_start, level_complete, split_action, hint_triggered) | 5.5 | M | None | Not Started |
+| 17 | P4 | Cross-browser testing (Chrome on Chromebook + Safari on iPad) | 5.1, 9.1 | M | All Pilot items | Not Started |
+| 18 | P4 | WCAG 2.1 AA accessibility pass (aria-labels, keyboard nav, color contrast) | 5.3 | M | All Pilot items | Not Started |
 
 ## V1
 
-| Priority | Item | PRD Section | Phase | Complexity | Source Dependency | Dependencies | Status |
-|----------|------|-------------|-------|------------|-------------------|--------------|--------|
-| P1 | World 4 — "The Deep Mine" (place value decomposition, gem pouches, 8–10 levels) | 4.5 | V1 | L | Four Essential Mental Math Strategies (place value method) | 4.1, 4.3 | Not Started |
-| P1 | World 5 — "The Cave Exit" (subtraction decomposition, 6–8 levels) | 4.6 | V1 | L | Four Essential Mental Math Strategies (subtraction decomposition) | 4.1, 4.5 | Not Started |
-| P1 | Teacher dashboard (class roster, per-student progress, hotspot levels) | 4.10 | V1 | L | PDB JTBD #5 | Analytics pipeline | Not Started |
-| P2 | Student profiles (teacher-created, pseudonym-based, server-side progress sync) | 4.10 | V1 | M | PDB Constraint (COPPA/FERPA) | Teacher dashboard | Not Started |
-| P2 | Adaptive difficulty (challenge variants after 3 clean completions; scaffolded variants after 2 failures) | 3.2 | V1 | M | Challenge of Teaching Math (diverse skill levels) | All worlds | Not Started |
-| P2 | Hint system — Tier 2 (full animated walkthrough after 4 failed attempts) | 4.8 | V1 | M | Five Common Mistakes (scaffolding) | Hint Tier 1 | Not Started |
-| P3 | CRA transition: pictorial dot arrays replacing gems in later World 4/5 levels | 4.5 | V1 | M | Five Common Mistakes (CRA framework) | World 4 | Not Started |
-| P3 | CRA transition: abstract number notation with caret marks in final levels | 3.2 | V1 | M | Four Essential Mental Math Strategies (caret notation) | CRA pictorial | Not Started |
-| P2 | English language localization (UI strings, LTR layout, English narration scripts and TTS) | 3.2 | V1 | M | Decision #10 (expand to English market) | i18n framework, Audio narration system | Not Started |
-| P3 | Explorer character customization (skin tone selection) | 8.1 | V1 | S | None | None | Not Started |
+| # | Priority | Item | PRD Section | Complexity | Dependencies | Status |
+|---|----------|------|-------------|------------|--------------|--------|
+| 19 | P1 | World 4 — "The Deep Mine" (place value decomposition, gem pouches, 8–10 levels) | 4.5 | L | #1, #6 | Not Started |
+| 20 | P1 | World 5 — "The Cave Exit" (subtraction decomposition, 6–8 levels) | 4.6 | L | #1, #19 | Not Started |
+| 21 | P1 | Teacher dashboard (class roster, per-student progress, hotspot levels) | 4.10 | L | #16 | Not Started |
+| 22 | P2 | Student profiles (teacher-created, pseudonym-based, server-side progress sync) | 4.10 | M | #21 | Not Started |
+| 23 | P2 | Adaptive difficulty (challenge variants after 3 clean completions; scaffolded variants after 2 failures) | 3.2 | M | All worlds | Not Started |
+| 24 | P2 | Hint system — Tier 2 (full animated walkthrough after 4 failed attempts) | 4.8 | M | #9 | Not Started |
+| 25 | P3 | CRA transition: pictorial dot arrays replacing gems in later World 4/5 levels | 4.5 | M | #19 | Not Started |
+| 26 | P3 | CRA transition: abstract number notation with caret marks in final levels | 3.2 | M | #25 | Not Started |
+| 27 | P2 | English language localization (UI strings, LTR layout, English narration scripts and TTS) | 3.2 | M | #4, #2 | Not Started |
+| 28 | P3 | Explorer character customization (skin tone selection) | 8.1 | S | None | Not Started |
 
 ## V2 / Future
 
-| Priority | Item | PRD Section | Phase | Complexity | Source Dependency | Dependencies | Status |
-|----------|------|-------------|-------|------------|-------------------|--------------|--------|
-| -- | Additional strategies: compensation, adding up, constant difference | 3.3 | V2 | L | Four Essential Mental Math Strategies (strategies 2–4) | V1 complete | Not Started |
-| -- | Number talk classroom mode (teacher poses problem, students submit decomposition approaches) | 3.3 | V2 | L | Four Essential Mental Math Strategies (number talks) | Teacher dashboard | Not Started |
-| -- | Parent dashboard | 3.3 | V2 | M | PDB Persona (parent) | Teacher dashboard | Not Started |
-| -- | Offline mode (service worker) | 3.3 | V2 | M | PDB Constraint (connectivity) | All | Not Started |
-| -- | Spanish language localization (UI strings, narration scripts, Spanish TTS) | 3.3 | V2 | M | Decision #10 (expand to Spanish market) | i18n framework, Audio narration system, English localization | Not Started |
-| -- | Google Classroom roster sync | 7 | V2 | M | None | Teacher dashboard | Not Started |
-| -- | LTI 1.3 LMS integration | 7 | V2 | L | None | Teacher dashboard | Not Started |
-| -- | Sandbox / free-play mode | 3.3 | V2 | M | None | Core mechanic | Not Started |
+| # | Priority | Item | PRD Section | Complexity | Dependencies | Status |
+|---|----------|------|-------------|------------|--------------|--------|
+| 29 | -- | Additional strategies: compensation, adding up, constant difference | 3.3 | L | V1 complete | Not Started |
+| 30 | -- | Number talk classroom mode (teacher poses problem, students submit decomposition approaches) | 3.3 | L | #21 | Not Started |
+| 31 | -- | Parent dashboard | 3.3 | M | #21 | Not Started |
+| 32 | -- | Offline mode (service worker) | 3.3 | M | All | Not Started |
+| 33 | -- | Spanish language localization (UI strings, narration scripts, Spanish TTS) | 3.3 | M | #4, #2, #27 | Not Started |
+| 34 | -- | Google Classroom roster sync | 7 | M | #21 | Not Started |
+| 35 | -- | LTI 1.3 LMS integration | 7 | L | #21 | Not Started |
