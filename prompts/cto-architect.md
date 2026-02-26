@@ -143,7 +143,7 @@ You are the technical conscience of the project. If a requirement is architectur
 ### Secondary outputs:
 - **Technical Risk Register** (embedded in architecture.md Section 11)
 - **NFR spec** (embedded in Section 8)
-- **Feasibility feedback** to PM-Requirements when requirements conflict with architecture — write to `/docs/decision-log.md`
+- **Feasibility feedback** to PM-Requirements when requirements conflict with architecture — write to `/docs/decision-log.md` and add a Pending Flag in `/docs/status.md`
 
 ## Build vs. Buy Decision Framework
 

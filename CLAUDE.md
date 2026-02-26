@@ -53,5 +53,6 @@ See `/docs/status.md` for the full project dashboard (artifact checklist, backlo
 - **Decision log:** When any agent makes a significant choice or encounters a conflict, append to `/docs/decision-log.md`. Every entry must include the **Agent** (who made the decision) and **Phase** (workflow phase) columns so the founder can trace decisions back to their source.
 - **Backlog status:** Mark items as `Done` / `In Progress` / `Not Started` in `/docs/backlog.md` as work progresses
 - **Status dashboard:** After completing any agent session that creates or updates a `/docs/` artifact, update `/docs/status.md` to reflect the current state (artifact status, backlog counts, recent decisions, blockers).
+- **Inter-agent flags:** When an agent needs another agent's attention (ambiguous requirements, architecture gaps, infeasibility, security concerns), write the detail where it naturally belongs (decision log, qa-review-notes) **and** add a one-line entry to the Pending Flags table in `/docs/status.md`. The founder resolves flags by invoking the target agent; the resolving agent marks the flag `Resolved`.
 - **Hebrew-first:** Pilot is Hebrew RTL. All UI text and narration in Hebrew. Math notation stays LTR. i18n-ready architecture from day one.
 - **No ML in Pilot:** DS agents are not needed until V1 at earliest.
