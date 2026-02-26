@@ -32,16 +32,7 @@ When the founder says any of these patterns, load the corresponding prompt and i
 
 ## Project Status
 
-**Completed artifacts:**
-- `/docs/pdb.md` — Problem Definition Brief
-- `/docs/prd.md` — Product Requirements Document (40KB, 10 sections)
-- `/docs/backlog.md` — Prioritized backlog (25+ items across Pilot/V1/V2)
-- `/docs/decision-log.md` — 11 major decisions with rationale
-
-**Not yet created:**
-- `/docs/sdb.md` — Solution Discovery Brief
-- `/docs/architecture.md` — System architecture + ADRs
-- `/src/`, `/tests/` — No code yet
+See `/docs/status.md` for the full project dashboard (artifact checklist, backlog summary, recent decisions, blockers).
 
 **Current phase:** Pre-implementation. Architecture is the next major milestone.
 
@@ -60,5 +51,6 @@ When the founder says any of these patterns, load the corresponding prompt and i
 - **Commits:** Reference the agent and artifact, e.g. "PM-Requirements: update PRD scope for pilot"
 - **Decision log:** When any agent makes a significant choice or encounters a conflict, append to `/docs/decision-log.md`. Every entry must include the **Agent** (who made the decision) and **Phase** (workflow phase) columns so the founder can trace decisions back to their source.
 - **Backlog status:** Mark items as `Done` / `In Progress` / `Not Started` in `/docs/backlog.md` as work progresses
+- **Status dashboard:** After completing any agent session that creates or updates a `/docs/` artifact, update `/docs/status.md` to reflect the current state (artifact status, backlog counts, recent decisions, blockers).
 - **Hebrew-first:** Pilot is Hebrew RTL. All UI text and narration in Hebrew. Math notation stays LTR. i18n-ready architecture from day one.
 - **No ML in Pilot:** DS agents are not needed until V1 at earliest.

@@ -278,7 +278,7 @@ Output: /docs/release-readiness.md
 
 3. **Run QA-Review after every 2-3 features**, not just before release. Catching a security issue early is 10x cheaper than catching it in production.
 
-4. **The decision log is your memory.** When you come back to the project after a week off, `/docs/decision-log.md` tells you what was decided and why. Each entry records the **Agent** and **Phase**, so you know exactly who to re-invoke if a decision needs revisiting.
+4. **Start every session with the dashboard.** `/docs/status.md` answers "where are we?" in one file — artifact checklist, backlog progress, recent decisions, and blockers. The decision log (`/docs/decision-log.md`) goes deeper: each entry records the **Agent** and **Phase**, so you know exactly who to re-invoke if a decision needs revisiting.
 
 5. **Phase aggressively.** Your pilot should be embarrassingly small. PM-Requirements will help you cut scope.
 
