@@ -39,6 +39,14 @@
 | 10 | 2026-02-25 | Founder | Hebrew-first for Israeli market; EN deferred to V1 |
 | 9 | 2026-02-19 | PM-Requirements | Game name: "Treasure of Tens" |
 
+## Pending Flags
+
+_Inter-agent flags that need founder attention. When an agent flags something for another agent, it adds a row here. Resolve by invoking the target agent, then mark the flag `Resolved`._
+
+| # | Date | From | For | Summary | Ref | Status |
+|---|------|------|-----|---------|-----|--------|
+| — | — | — | — | No pending flags | — | — |
+
 ## What's Blocking Progress
 
 1. **Architecture not yet written.** All P0 backlog items depend on tech stack and system design decisions. Invoke CTO-Architect next.

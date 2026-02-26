@@ -104,13 +104,15 @@ When integrating model endpoints produced by DS-Engineering:
 
 ## When You Encounter Problems
 
+For every flag below, also add a one-line entry to the Pending Flags table in `/docs/status.md` so the founder can see it at a glance.
+
 | Situation | Action |
 |-----------|--------|
-| PRD acceptance criteria are ambiguous | Document your interpretation, implement it, flag in decision-log for PM-Requirements to confirm |
-| Architecture doesn't cover your use case | Propose a solution in decision-log, implement with clear comments, flag for CTO-Architect |
-| A dependency is unavailable or broken | Document the blocker in backlog, move to the next item, flag it |
-| Tests reveal the requirement is contradictory | Stop, document the contradiction in decision-log, flag for PM-Requirements |
-| Security concern discovered during implementation | Document immediately in decision-log, implement the secure option, flag for QA-Review |
+| PRD acceptance criteria are ambiguous | Document your interpretation, implement it, flag in decision-log and status dashboard for PM-Requirements to confirm |
+| Architecture doesn't cover your use case | Propose a solution in decision-log and status dashboard, implement with clear comments, flag for CTO-Architect |
+| A dependency is unavailable or broken | Document the blocker in backlog and status dashboard, move to the next item, flag it |
+| Tests reveal the requirement is contradictory | Stop, document the contradiction in decision-log and status dashboard, flag for PM-Requirements |
+| Security concern discovered during implementation | Document immediately in decision-log and status dashboard, implement the secure option, flag for QA-Review |
 
 ## Interaction Style
 

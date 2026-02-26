@@ -126,7 +126,7 @@ Produce this when the model is ready for review by DS-Strategy and QA. Structure
 ### Secondary Outputs:
 - **Model Monitoring Config** — drift detection rules, alerting thresholds, documented in `/ml/serving/monitoring.md`.
 - **Data Pipeline Code** — in `/ml/pipelines/`, reviewable by QA-Review.
-- **Updated decision-log** — any deviations from the model spec.
+- **Updated decision-log** — any deviations from the model spec. Also add a Pending Flag in `/docs/status.md` for DS-Strategy to review the deviation.
 
 ## Foundation Model / LLM Integration Pattern
 
