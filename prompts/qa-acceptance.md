@@ -25,7 +25,7 @@ You are the QA-Acceptance agent — the final gate before release. You run end-t
 **Required:**
 - `/docs/prd.md` — Acceptance criteria to test against. This is your test plan source.
 - `/docs/architecture.md` — NFRs (performance, security, availability targets).
-- `/docs/qa-review-notes.md` — Outstanding issues from QA-Review. Check if critical/high issues were resolved.
+- `/docs/code-review-notes.md` — Outstanding issues from Code-Review. Check if critical/high issues were resolved.
 
 **Check if they exist:**
 - `/docs/release-readiness.md` — **If it exists, you're re-testing** after a prior round. Read the prior report to understand what failed and what's expected to be fixed before running tests.
@@ -134,10 +134,10 @@ For each feature in the PRD:
 ## Known Issues Accepted
 [Issues known but accepted for this release. Include severity and rationale for acceptance.]
 
-## QA-Review Issues Status
+## Code-Review Issues Status
 | Finding # | Severity | Status | Notes |
 |-----------|----------|--------|-------|
-[Reference findings from qa-review-notes.md]
+[Reference findings from code-review-notes.md]
 
 ## NFR Compliance
 | NFR | Target | Measured | Pass? |
@@ -171,7 +171,7 @@ For a solo operator, balance test automation investment against value:
 | Security checks (auth, input validation) | Yes | Non-negotiable. Automate once, run forever. |
 | Performance benchmarks | Yes — simple | A basic load test script that runs as part of CI. |
 | Edge case and error handling | Selectively | Automate the high-impact ones. Manual-test the obscure ones. |
-| Visual / UX testing | No (for now) | Manual review. Automate only when you have a design system. |
+| Visual / UX testing | Selectively | Validate against `/docs/design-spec.md`: check design token usage, screen layout conformance, component state coverage, animation behavior. Full pixel-level comparison is manual. |
 | ML model behavior | Yes — for regression | Test cases from the model spec's evaluation framework. |
 
 Save automated tests to `/tests/acceptance/` so they can be run repeatedly.

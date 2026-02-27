@@ -4,7 +4,7 @@
 
 | Phase | Total | Done | In Progress | Not Started |
 |-------|-------|------|-------------|-------------|
-| Pilot | 18 | 0 | 0 | 18 |
+| Pilot | 21 | 0 | 0 | 21 |
 | V1 | 10 | 0 | 0 | 10 |
 | V2+ | 7 | 0 | 0 | 7 |
 
@@ -12,10 +12,13 @@
 
 | # | Priority | Item | PRD Section | Complexity | Dependencies | Status |
 |---|----------|------|-------------|------------|--------------|--------|
-| 1 | P0 | Gem-splitting core mechanic (drag-to-split, animate, display equation) | 4.1 | L | None | Not Started |
-| 2 | P0 | Audio narration system (Hebrew TTS, speaker toggle, autoplay handling) | 4.9 | M | None | Not Started |
-| 3 | P0 | Hebrew language UI and RTL layout (all text, menus, navigation in Hebrew RTL; math notation stays LTR) | 1.1, 8.1 | M | None | Not Started |
-| 4 | P0 | i18n framework setup (externalize all UI strings and narration text into locale files; Hebrew as default locale) | 3.3 | M | None | Not Started |
+| 36 | P0 | Design system definition (color palette, typography, spacing, component tokens) | 8 | M | Architecture | Not Started |
+| 37 | P0 | Screen designs for all Pilot screens (gameplay, progress map, title, level complete, settings) | 8.3 | L | #36 | Not Started |
+| 38 | P0 | Asset manifest and gem sprite generation specs | 8 | M | #36 | Not Started |
+| 1 | P0 | Gem-splitting core mechanic (drag-to-split, animate, display equation) | 4.1 | L | Architecture, #37 | Not Started |
+| 2 | P0 | Audio narration system (Hebrew TTS, speaker toggle, autoplay handling) | 4.9 | M | Architecture | Not Started |
+| 3 | P0 | Hebrew language UI and RTL layout (all text, menus, navigation in Hebrew RTL; math notation stays LTR) | 1.1, 8.1 | M | Architecture, #36 | Not Started |
+| 4 | P0 | i18n framework setup (externalize all UI strings and narration text into locale files; Hebrew as default locale) | 3.3 | M | Architecture | Not Started |
 | 5 | P1 | World 1 — "Learning to Split" (5–6 levels, free exploration of splits) | 4.2 | M | #1 | Not Started |
 | 6 | P1 | World 2 — "Making Tens" (8–10 levels, combine splits to make 10, Power Gem animation) | 4.3 | L | #1 | Not Started |
 | 7 | P2 | World 3 — "Treasure Chest Challenge" (6–8 levels, multi-addend decomposition) | 4.4 | L | #1, #6 | Not Started |

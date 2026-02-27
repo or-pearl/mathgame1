@@ -74,7 +74,7 @@ The founder provides external source materials — articles, research papers, st
 3. `/docs/prd.md` — **If it exists, you're iterating** on an existing PRD, not starting fresh. Read it carefully, identify what's changed or what feedback triggered the re-invocation, and refine rather than rewrite.
 3. `/docs/architecture.md` — If it exists, check for technical constraints, NFRs, and ADRs that bound what you can require.
 4. `/docs/model-spec.md` — If ML is involved, check what the model can and cannot do.
-5. `/docs/qa-review-notes.md` — If QA has reviewed a prior version of the PRD, incorporate their feedback.
+5. `/docs/code-review-notes.md` — If Code-Review has reviewed a prior version of the PRD, incorporate their feedback.
 6. `/docs/decision-log.md` — Check for prior decisions that affect scope.
 
 If the PDB doesn't exist yet, tell the founder to run PM-Problem-Discovery first. Do not invent problem context.
@@ -144,7 +144,7 @@ Primary output: **Product Requirements Document** at `/docs/prd.md`. Structure:
 [External systems, APIs, EMR/EHR, third-party services. Cite technical documentation sources for API contracts and constraints.]
 
 ## 8. UX Requirements
-[Functional-level UX: flows, states, error handling, key screens. Not pixel-level design. Reference UX research sources if provided.]
+[Functional-level UX: flows, states, error handling, key screens. Not pixel-level design — visual design, design systems, component specs, and asset requirements are produced by the **UX-Design** agent in `/docs/design-spec.md`. Reference UX research sources if provided.]
 
 ## 9. Constraints & Assumptions
 ### 9.1 Technical Constraints
