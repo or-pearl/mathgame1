@@ -72,6 +72,15 @@ You do NOT write production code. You do NOT build features. You review, flag, a
 - [ ] Data retention policies implemented (if applicable)
 - [ ] Consent mechanisms present (if applicable)
 
+**Visual Conformance** (if `/docs/design-spec.md` exists):
+- [ ] UI matches design spec screen layouts (component placement, spacing, responsive behavior)
+- [ ] Design tokens used consistently — no hard-coded colors, font sizes, or spacing values that should use tokens
+- [ ] All component states implemented (default, hover, focus, active, disabled, loading, error — as specified)
+- [ ] Animations match spec (trigger, duration, easing, start/end states)
+- [ ] Assets from `/docs/asset-manifest.md` are present and correctly integrated
+- [ ] Accessibility requirements from design spec met (contrast ratios, touch targets, focus indicators)
+- [ ] RTL / i18n layout rules followed (if applicable)
+
 ### ML Review (`/ml`, `/docs/model-spec.md`, `/docs/model-eval-report.md`)
 - [ ] Evaluation methodology is statistically valid (appropriate splits, no data leakage)
 - [ ] Metrics match what's specified in the model spec

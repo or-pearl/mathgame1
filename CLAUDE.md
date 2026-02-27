@@ -19,8 +19,9 @@ When the founder says any of these patterns, load the corresponding prompt and i
 | "be CTO-Implementation" / "build" / "implement" | `/prompts/cto-implementation.md` | `/docs/prd.md`, `/docs/architecture.md`, `/docs/backlog.md`, `/docs/decision-log.md` |
 | "be DS-Strategy" / "evaluate ML" | `/prompts/ds-strategy.md` | `/docs/prd.md`, `/docs/pdb.md`, `/docs/sdb.md` |
 | "be DS-Engineering" / "build ML" | `/prompts/ds-engineering.md` | `/docs/model-spec.md`, `/docs/architecture.md` |
-| "be Code-Review" / "review code" | `/prompts/code-review.md` | `/docs/prd.md`, `/docs/architecture.md`, `/src/**` |
-| "be QA-Acceptance" / "acceptance test" | `/prompts/qa-acceptance.md` | `/docs/prd.md`, `/docs/architecture.md`, `/docs/code-review-notes.md`, `/docs/backlog.md` |
+| "be UX-Design" / "design the UI" | `/prompts/ux-design.md` | `/docs/prd.md`, `/docs/architecture.md`, `/docs/decision-log.md` |
+| "be Code-Review" / "review code" | `/prompts/code-review.md` | `/docs/prd.md`, `/docs/architecture.md`, `/docs/design-spec.md`, `/src/**` |
+| "be QA-Acceptance" / "acceptance test" | `/prompts/qa-acceptance.md` | `/docs/prd.md`, `/docs/architecture.md`, `/docs/design-spec.md`, `/docs/code-review-notes.md`, `/docs/backlog.md` |
 
 **Always** read the prompt file first — it defines the agent's full role, behaviors, output format, and boundaries. Then read the listed docs. Skip any file that doesn't exist yet.
 
@@ -29,6 +30,8 @@ When the founder says any of these patterns, load the corresponding prompt and i
 - "next backlog item" → read `/docs/backlog.md`, find the first non-Done item, and implement it as CTO-Implementation.
 - "update the PRD" → re-read `/docs/prd.md` as PM-Requirements and make surgical edits, don't regenerate.
 - "review" with no qualifier → Code-Review against `/docs/prd.md` acceptance criteria.
+- "design this screen" → UX-Design agent, scoped to a specific screen from the PRD screen inventory.
+- "update the design" → re-read `/docs/design-spec.md` as UX-Design and make surgical edits, don't regenerate.
 
 ## Project Status
 
@@ -42,6 +45,8 @@ See `/docs/status.md` for the full project dashboard (artifact checklist, backlo
 /prompts/   → Agent role definitions (read-only reference, don't edit unless asked)
 /sources/   → 7 pedagogical research papers (read-only reference for agents)
 /docs/      → Shared artifacts that agents read and write
+  design-spec.md    → Visual design system, screen layouts, component specs (UX-Design output)
+  asset-manifest.md → Required art assets with generation specs (UX-Design output)
 /src/       → Application code (not yet created)
 /tests/     → Test suites (not yet created)
 ```

@@ -2,7 +2,7 @@
 
 ## How This Works
 
-This repo uses role-specific agent prompts in `/prompts/` that turn Claude Code into specialized team members on demand. Instead of managing 8 separate chat sessions, you switch agents with a one-liner.
+This repo uses role-specific agent prompts in `/prompts/` that turn Claude Code into specialized team members on demand. Instead of managing 9 separate chat sessions, you switch agents with a one-liner.
 
 Agent invocation is handled automatically by `CLAUDE.md`, which Claude Code reads on session start. You never need to manually specify which prompt file or docs to load.
 
@@ -27,6 +27,7 @@ That's it. `CLAUDE.md` tells Claude to read `/prompts/cto-architect.md` for the 
 | "be CTO-Implementation" / "build" / "implement" | CTO-Implementation |
 | "be DS-Strategy" / "evaluate ML" | DS-Strategy |
 | "be DS-Engineering" / "build ML" | DS-Engineering |
+| "be UX-Design" / "design the UI" | UX-Design |
 | "be Code-Review" / "review code" | Code-Review |
 | "be QA-Acceptance" / "acceptance test" | QA-Acceptance |
 
@@ -35,6 +36,8 @@ That's it. `CLAUDE.md` tells Claude to read `/prompts/cto-architect.md` for the 
 - **"next backlog item"** — Finds the first non-Done item in `/docs/backlog.md` and implements it as CTO-Implementation.
 - **"update the PRD"** — Opens `/docs/prd.md` as PM-Requirements for surgical edits.
 - **"review"** (no qualifier) — Runs Code-Review against `/docs/prd.md` acceptance criteria.
+- **"design this screen"** — UX-Design agent, scoped to a specific screen from the PRD screen inventory.
+- **"update the design"** — Opens `/docs/design-spec.md` as UX-Design for surgical edits.
 
 ## Repo Structure
 
@@ -49,6 +52,7 @@ That's it. `CLAUDE.md` tells Claude to read `/prompts/cto-architect.md` for the 
 │   ├── cto-implementation.md
 │   ├── ds-strategy.md
 │   ├── ds-engineering.md
+│   ├── ux-design.md
 │   ├── code-review.md
 │   └── qa-acceptance.md
 ├── /sources                       # Founder-provided reference materials
@@ -64,6 +68,8 @@ That's it. `CLAUDE.md` tells Claude to read `/prompts/cto-architect.md` for the 
 │   ├── deployment.md              # Deployment guide
 │   ├── model-spec.md              # ML model specification (if applicable)
 │   ├── model-eval-report.md       # ML evaluation results (if applicable)
+│   ├── design-spec.md             # Visual design system, screen layouts, components (UX-Design output)
+│   ├── asset-manifest.md          # Required art assets with generation specs (UX-Design output)
 │   ├── code-review-notes.md       # Code review findings
 │   ├── release-readiness.md       # Go/no-go assessment
 │   └── kpis.md                    # Success metrics (if complex)
@@ -245,10 +251,29 @@ Input: /docs/prd.md, /docs/architecture.md
 Output: /docs/model-spec.md
 ```
 
-### Phase 6: Build (Days 6-20+)
+### Phase 6: Design (Day 5-6)
+```
+Agent: UX-Design
+Input: /docs/prd.md, /docs/architecture.md, /docs/decision-log.md
+Output: /docs/design-spec.md, /docs/asset-manifest.md
+```
+**You say:** "design the UI"
+
+Produces the visual design system (colors, typography, spacing, components) and screen-by-screen layouts. Also produces the asset manifest — a list of art assets that need to be generated externally (via Midjourney, Scenario.com, etc.).
+
+**Designing a specific screen:**
+"design this screen — the gameplay screen from PRD Section 4.1"
+
+**Iterating:**
+"update the design — the gem colors need more contrast for accessibility."
+
+**With Figma MCP connected:**
+"design the UI — pull the design tokens from this Figma file: [Figma URL]"
+
+### Phase 7: Build (Days 7-20+)
 ```
 Agent: CTO-Implementation
-Input: /docs/prd.md, /docs/architecture.md, /docs/backlog.md
+Input: /docs/prd.md, /docs/architecture.md, /docs/design-spec.md, /docs/backlog.md
 Output: /src, /tests, API docs
 ```
 **You say:** "next backlog item"
@@ -262,18 +287,18 @@ Input: /docs/model-spec.md, /docs/architecture.md
 Output: /ml/*, model serving endpoints
 ```
 
-### Phase 7: Review (Ongoing + Pre-Release)
+### Phase 8: Review (Ongoing + Pre-Release)
 ```
 Agent: Code-Review
-Input: /src, /docs/prd.md, /docs/architecture.md
+Input: /src, /docs/prd.md, /docs/architecture.md, /docs/design-spec.md
 Output: /docs/code-review-notes.md
 ```
 **You say:** "review"
 
-### Phase 8: Acceptance + Release (Pre-Launch)
+### Phase 9: Acceptance + Release (Pre-Launch)
 ```
 Agent: QA-Acceptance
-Input: /docs/prd.md, /docs/architecture.md, /docs/code-review-notes.md
+Input: /docs/prd.md, /docs/architecture.md, /docs/design-spec.md, /docs/code-review-notes.md
 Output: /docs/release-readiness.md
 ```
 **You say:** "acceptance test"

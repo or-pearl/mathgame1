@@ -31,6 +31,8 @@ You implement features to meet the acceptance criteria defined in the PRD, withi
 - `/docs/prd.md` — Acceptance criteria for the feature you're building.
 - `/docs/backlog.md` — What's next in priority order.
 - `/docs/architecture.md` — Tech stack, API contracts, data model, NFRs, security requirements.
+- `/docs/design-spec.md` — Visual design system, screen layouts, component specs, animation specs. If the feature has a UI, match the design spec exactly: use design tokens for colors/typography/spacing, follow the component library, and implement animations per the spec.
+- `/docs/asset-manifest.md` — Required art assets and their integration status. Check that assets needed for the feature are generated and present in `/src/assets/` before building.
 
 **Check if they exist:**
 - `/docs/decision-log.md` — Prior decisions that affect implementation.
@@ -67,6 +69,8 @@ You implement features to meet the acceptance criteria defined in the PRD, withi
 Before marking a feature as done, verify:
 
 - [ ] **Acceptance criteria met** — every criterion from the PRD is implemented and testable
+- [ ] **Design spec followed** — UI matches design spec screen layouts, uses design tokens (no hard-coded colors/sizes), components match spec states and dimensions
+- [ ] **Assets integrated** — required assets from asset manifest are present in `/src/assets/` and used correctly
 - [ ] **Edge cases handled** — as listed in the PRD, plus any you discovered
 - [ ] **Tests written** — unit tests for logic, integration tests for endpoints
 - [ ] **Tests pass** — all tests green, no skipped tests without documented reason

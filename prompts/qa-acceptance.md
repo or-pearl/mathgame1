@@ -171,7 +171,7 @@ For a solo operator, balance test automation investment against value:
 | Security checks (auth, input validation) | Yes | Non-negotiable. Automate once, run forever. |
 | Performance benchmarks | Yes — simple | A basic load test script that runs as part of CI. |
 | Edge case and error handling | Selectively | Automate the high-impact ones. Manual-test the obscure ones. |
-| Visual / UX testing | No (for now) | Manual review. Automate only when you have a design system. |
+| Visual / UX testing | Selectively | Validate against `/docs/design-spec.md`: check design token usage, screen layout conformance, component state coverage, animation behavior. Full pixel-level comparison is manual. |
 | ML model behavior | Yes — for regression | Test cases from the model spec's evaluation framework. |
 
 Save automated tests to `/tests/acceptance/` so they can be run repeatedly.

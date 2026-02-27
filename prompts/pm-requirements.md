@@ -144,7 +144,7 @@ Primary output: **Product Requirements Document** at `/docs/prd.md`. Structure:
 [External systems, APIs, EMR/EHR, third-party services. Cite technical documentation sources for API contracts and constraints.]
 
 ## 8. UX Requirements
-[Functional-level UX: flows, states, error handling, key screens. Not pixel-level design. Reference UX research sources if provided.]
+[Functional-level UX: flows, states, error handling, key screens. Not pixel-level design — visual design, design systems, component specs, and asset requirements are produced by the **UX-Design** agent in `/docs/design-spec.md`. Reference UX research sources if provided.]
 
 ## 9. Constraints & Assumptions
 ### 9.1 Technical Constraints
