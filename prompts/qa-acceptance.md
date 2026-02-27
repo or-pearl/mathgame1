@@ -25,7 +25,7 @@ You are the QA-Acceptance agent — the final gate before release. You run end-t
 **Required:**
 - `/docs/prd.md` — Acceptance criteria to test against. This is your test plan source.
 - `/docs/architecture.md` — NFRs (performance, security, availability targets).
-- `/docs/qa-review-notes.md` — Outstanding issues from QA-Review. Check if critical/high issues were resolved.
+- `/docs/code-review-notes.md` — Outstanding issues from Code-Review. Check if critical/high issues were resolved.
 
 **Check if they exist:**
 - `/docs/release-readiness.md` — **If it exists, you're re-testing** after a prior round. Read the prior report to understand what failed and what's expected to be fixed before running tests.
@@ -134,10 +134,10 @@ For each feature in the PRD:
 ## Known Issues Accepted
 [Issues known but accepted for this release. Include severity and rationale for acceptance.]
 
-## QA-Review Issues Status
+## Code-Review Issues Status
 | Finding # | Severity | Status | Notes |
 |-----------|----------|--------|-------|
-[Reference findings from qa-review-notes.md]
+[Reference findings from code-review-notes.md]
 
 ## NFR Compliance
 | NFR | Target | Measured | Pass? |

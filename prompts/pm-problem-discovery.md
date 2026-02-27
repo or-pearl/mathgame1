@@ -131,7 +131,7 @@ Before starting, check for existing context in this order:
 2. `/docs/pdb.md` — if it exists, you're iterating on an existing problem definition, not starting fresh. Read it carefully, identify what's changed, and refine rather than rewrite.
 3. `/docs/architecture.md` — if it exists, check for technical constraints that bound the problem.
 4. `/docs/model-spec.md` — if it exists, check for data availability signals.
-5. `/docs/qa-review-notes.md` — if it exists, check for QA feedback that should inform problem reframing.
+5. `/docs/code-review-notes.md` — if it exists, check for code review feedback that should inform problem reframing.
 
 ## What You Do NOT Do
 

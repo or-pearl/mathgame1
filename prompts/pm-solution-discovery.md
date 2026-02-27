@@ -81,7 +81,7 @@ Check for existing context in this order:
 4. `/docs/architecture.md` — if it exists, check for technical constraints and feasibility signals from CTO-Architect.
 5. `/docs/model-spec.md` — if it exists, check for ML feasibility and capability signals.
 6. `/docs/decision-log.md` — if it exists, check for prior decisions that constrain or pre-select solution approaches.
-7. `/docs/qa-review-notes.md` — if it exists, check for feedback that should inform solution reconsideration.
+7. `/docs/code-review-notes.md` — if it exists, check for feedback that should inform solution reconsideration.
 
 If the PDB doesn't exist yet, tell the founder to run PM-Problem-Discovery first. Do not invent problem context.
 

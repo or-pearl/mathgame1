@@ -27,14 +27,14 @@ That's it. `CLAUDE.md` tells Claude to read `/prompts/cto-architect.md` for the 
 | "be CTO-Implementation" / "build" / "implement" | CTO-Implementation |
 | "be DS-Strategy" / "evaluate ML" | DS-Strategy |
 | "be DS-Engineering" / "build ML" | DS-Engineering |
-| "be QA-Review" / "review code" | QA-Review |
+| "be Code-Review" / "review code" | Code-Review |
 | "be QA-Acceptance" / "acceptance test" | QA-Acceptance |
 
 ### Shorthand commands
 
 - **"next backlog item"** — Finds the first non-Done item in `/docs/backlog.md` and implements it as CTO-Implementation.
 - **"update the PRD"** — Opens `/docs/prd.md` as PM-Requirements for surgical edits.
-- **"review"** (no qualifier) — Runs QA-Review against `/docs/prd.md` acceptance criteria.
+- **"review"** (no qualifier) — Runs Code-Review against `/docs/prd.md` acceptance criteria.
 
 ## Repo Structure
 
@@ -49,7 +49,7 @@ That's it. `CLAUDE.md` tells Claude to read `/prompts/cto-architect.md` for the 
 │   ├── cto-implementation.md
 │   ├── ds-strategy.md
 │   ├── ds-engineering.md
-│   ├── qa-review.md
+│   ├── code-review.md
 │   └── qa-acceptance.md
 ├── /sources                       # Founder-provided reference materials
 │   ├── (articles, papers, guidelines, regulatory docs, competitor analysis...)
@@ -64,7 +64,7 @@ That's it. `CLAUDE.md` tells Claude to read `/prompts/cto-architect.md` for the 
 │   ├── deployment.md              # Deployment guide
 │   ├── model-spec.md              # ML model specification (if applicable)
 │   ├── model-eval-report.md       # ML evaluation results (if applicable)
-│   ├── qa-review-notes.md         # QA findings
+│   ├── code-review-notes.md       # Code review findings
 │   ├── release-readiness.md       # Go/no-go assessment
 │   └── kpis.md                    # Success metrics (if complex)
 ├── /src                           # Application code
@@ -253,7 +253,7 @@ Output: /src, /tests, API docs
 ```
 **You say:** "next backlog item"
 
-Repeat for each backlog item. This is where you spend most of your time. After QA-Review, re-invoke to fix findings: "build — address the QA findings in /docs/qa-review-notes.md."
+Repeat for each backlog item. This is where you spend most of your time. After Code-Review, re-invoke to fix findings: "build — address the review findings in /docs/code-review-notes.md."
 
 If ML is involved:
 ```
@@ -264,16 +264,16 @@ Output: /ml/*, model serving endpoints
 
 ### Phase 7: Review (Ongoing + Pre-Release)
 ```
-Agent: QA-Review
+Agent: Code-Review
 Input: /src, /docs/prd.md, /docs/architecture.md
-Output: /docs/qa-review-notes.md
+Output: /docs/code-review-notes.md
 ```
 **You say:** "review"
 
 ### Phase 8: Acceptance + Release (Pre-Launch)
 ```
 Agent: QA-Acceptance
-Input: /docs/prd.md, /docs/architecture.md, /docs/qa-review-notes.md
+Input: /docs/prd.md, /docs/architecture.md, /docs/code-review-notes.md
 Output: /docs/release-readiness.md
 ```
 **You say:** "acceptance test"
@@ -286,13 +286,13 @@ Output: /docs/release-readiness.md
 
 3. **Drop sources before you start, not after.** If you have research, guidelines, or competitor analysis, put it in `/sources/` before invoking PM-Problem-Discovery. It's much cheaper to inform the problem definition upfront than to retrofit sources into a half-built PRD.
 
-4. **Run QA-Review after every 2-3 features**, not just before release. Catching a security issue early is 10x cheaper than catching it in production.
+4. **Run Code-Review after every 2-3 features**, not just before release. Catching a security issue early is 10x cheaper than catching it in production.
 
 5. **Start every session with the dashboard.** `/docs/status.md` answers "where are we?" in one file — artifact checklist, backlog progress, recent decisions, and blockers. The decision log (`/docs/decision-log.md`) goes deeper: each entry records the **Agent** and **Phase**, so you know exactly who to re-invoke if a decision needs revisiting.
 
 6. **Phase aggressively.** Your pilot should be embarrassingly small. PM-Requirements will help you cut scope.
 
-7. **Git commit after every agent session.** Commit messages like "PM-Requirements: updated PRD scope for pilot" or "QA-Review: security review round 1" make the project history readable. Commit source files too — they're part of your project's evidence base.
+7. **Git commit after every agent session.** Commit messages like "PM-Requirements: updated PRD scope for pilot" or "Code-Review: security review round 1" make the project history readable. Commit source files too — they're part of your project's evidence base.
 
 8. **When agents disagree**, that's a feature, not a bug. If CTO-Architect says a requirement is infeasible and PM-Requirements insists it's critical, you (the founder) make the call and document it in the decision log.
 
