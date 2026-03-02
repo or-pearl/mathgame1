@@ -1,6 +1,6 @@
 # Project Status Dashboard
 
-> **Last updated:** 2026-02-27 | **Current phase:** Pre-implementation | **Next milestone:** Architecture
+> **Last updated:** 2026-03-02 | **Current phase:** Pre-implementation | **Next milestone:** Architecture
 
 ## Artifacts
 
@@ -10,7 +10,7 @@
 | Solution Discovery Brief | `/docs/sdb.md` | Not started | — | Blocked on: founder invoking PM-Solution-Discovery |
 | Product Requirements Doc | `/docs/prd.md` | Done | PM-Requirements | 40KB, 10 sections, Hebrew-first pilot scope |
 | Backlog | `/docs/backlog.md` | Done | PM-Requirements | 35 items across Pilot / V1 / V2 (IDs #1–#35) |
-| Decision Log | `/docs/decision-log.md` | Active | Founder | 12 decisions logged |
+| Decision Log | `/docs/decision-log.md` | Active | Founder | 13 decisions logged |
 | Architecture | `/docs/architecture.md` | Not started | — | Next major milestone |
 | Design Spec | `/docs/design-spec.md` | Not started | — | UX-Design agent output; blocked on Architecture |
 | Asset Manifest | `/docs/asset-manifest.md` | Not started | — | UX-Design agent output; blocked on Design Spec |
@@ -38,7 +38,8 @@
 
 | # | Date | Agent | Decision |
 |---|------|-------|----------|
-| 12 | 2026-02-27 | Founder | Add UX-Design agent; Figma MCP integration (Path B) |
+| 13 | 2026-03-02 | Founder | Remove broken Figma MCP config; UX-Design agent text-spec-only |
+| 12 | 2026-02-27 | Founder | Add UX-Design agent to orchestration system |
 | 11 | 2026-02-25 | PM-Requirements | RTL layout as default for Hebrew Pilot |
 | 10 | 2026-02-25 | Founder | Hebrew-first for Israeli market; EN deferred to V1 |
 | 9 | 2026-02-19 | PM-Requirements | Game name: "Treasure of Tens" |
