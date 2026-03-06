@@ -139,6 +139,11 @@ PM-Problem-Discovery reads them ──► Extracts problem-relevant insights
         │                    Flags what the sources DON'T cover (Source Gaps)
         │
         ▼
+PM-Solution-Discovery reads them ──► Evaluates solution alternatives against source evidence
+        │                     References sources when comparing approaches
+        │                     Produces SDB grounded in both PDB and original sources
+        │
+        ▼
 PM-Requirements reads them ──► Translates source mandates into testable requirements
         │                       Traces each requirement to its source (or marks "inferred")
         │                       Flags conflicts between sources and architecture
