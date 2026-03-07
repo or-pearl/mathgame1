@@ -149,7 +149,7 @@ PM-Requirements reads them ──► Translates source mandates into testable re
         │                       Flags conflicts between sources and architecture
         │
         ▼
-Downstream agents (CTO, DS, QA) read /docs/ artifacts
+Downstream agents (CTO, DS, QA, UX) read /docs/ artifacts
         which already contain source citations and traceability
         They consult /sources/ directly only when they need
         the original detail (e.g., checking an API spec)
