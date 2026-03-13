@@ -1,6 +1,6 @@
 # Project Status Dashboard
 
-> **Last updated:** 2026-03-02 | **Current phase:** Pre-implementation | **Next milestone:** Architecture
+> **Last updated:** 2026-03-13 | **Current phase:** Architecture complete | **Next milestone:** Design Spec (UX-Design)
 
 ## Artifacts
 
@@ -10,9 +10,9 @@
 | Solution Discovery Brief | `/docs/sdb.md` | Not started | — | Blocked on: founder invoking PM-Solution-Discovery |
 | Product Requirements Doc | `/docs/prd.md` | Done | PM-Requirements | 40KB, 10 sections, Hebrew-first pilot scope |
 | Backlog | `/docs/backlog.md` | Done | PM-Requirements | 35 items across Pilot / V1 / V2 (IDs #1–#35) |
-| Decision Log | `/docs/decision-log.md` | Active | Founder | 13 decisions logged |
-| Architecture | `/docs/architecture.md` | Not started | — | Next major milestone |
-| Design Spec | `/docs/design-spec.md` | Not started | — | UX-Design agent output; blocked on Architecture |
+| Decision Log | `/docs/decision-log.md` | Active | CTO-Architect | 20 decisions logged (7 new architecture decisions) |
+| Architecture | `/docs/architecture.md` | Done | CTO-Architect | React 18 + TS + Vite, static SPA, Cloudflare Pages, 7 ADRs |
+| Design Spec | `/docs/design-spec.md` | Not started | — | UX-Design agent output; **unblocked** — Architecture complete |
 | Asset Manifest | `/docs/asset-manifest.md` | Not started | — | UX-Design agent output; blocked on Design Spec |
 | Source Index | `/sources/README.md` | Done | — | 7 pedagogical references indexed |
 
@@ -38,11 +38,14 @@
 
 | # | Date | Agent | Decision |
 |---|------|-------|----------|
+| 20 | 2026-03-13 | CTO-Architect | Howler.js + Web Speech API for audio; pre-generated fallback if TTS quality poor |
+| 19 | 2026-03-13 | CTO-Architect | i18n-first with react-i18next — zero hardcoded strings |
+| 18 | 2026-03-13 | CTO-Architect | Cloudflare Pages hosting (free tier, Tel Aviv edge node) |
+| 17 | 2026-03-13 | CTO-Architect | @use-gesture/react for drag, CSS/WAAPI for animation |
+| 16 | 2026-03-13 | CTO-Architect | React 18 + TypeScript 5 + Vite 6 core stack |
+| 15 | 2026-03-13 | CTO-Architect | Static SPA, zero backend for Pilot |
+| 14 | 2026-03-13 | CTO-Architect | DOM-based rendering over Canvas for WCAG 2.1 AA |
 | 13 | 2026-03-02 | Founder | Remove broken Figma MCP config; UX-Design agent text-spec-only |
-| 12 | 2026-02-27 | Founder | Add UX-Design agent to orchestration system |
-| 11 | 2026-02-25 | PM-Requirements | RTL layout as default for Hebrew Pilot |
-| 10 | 2026-02-25 | Founder | Hebrew-first for Israeli market; EN deferred to V1 |
-| 9 | 2026-02-19 | PM-Requirements | Game name: "Treasure of Tens" |
 
 ## Pending Flags
 
@@ -54,6 +57,6 @@ _Inter-agent flags that need founder attention. When an agent flags something fo
 
 ## What's Blocking Progress
 
-1. **Architecture not yet written.** All P0 backlog items depend on tech stack and system design decisions. Invoke CTO-Architect next.
-2. **Design spec not yet written.** Visual implementation items (gem sprites, screen layouts, animations) depend on the design spec. Invoke UX-Design after Architecture.
+1. ~~**Architecture not yet written.**~~ **Done** (2026-03-13). All P0 backlog items are now unblocked from the architecture dependency.
+2. **Design spec not yet written.** Visual implementation items (gem sprites, screen layouts, animations) depend on the design spec. **Invoke UX-Design next** — Architecture dependency is resolved.
 3. **SDB skipped.** PM-Solution-Discovery was never run. The PRD was written without a formal Solution Discovery Brief. Consider running it retroactively or accepting the gap.
