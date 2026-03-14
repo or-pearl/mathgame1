@@ -7,7 +7,7 @@
 | Artifact | Path | Status | Last Agent | Notes |
 |----------|------|--------|------------|-------|
 | Problem Definition Brief | `/docs/pdb.md` | Done | PM-Problem-Discovery | Covers personas, JTBD, constraints, evidence base |
-| Solution Discovery Brief | `/docs/sdb.md` | Not started | — | Blocked on: founder invoking PM-Solution-Discovery |
+| Solution Discovery Brief | `/docs/sdb.md` | Skipped | — | Gap accepted by founder (2026-03-14). PRD written without SDB. Will invoke PM-Solution-Discovery only if solution pivot is needed. |
 | Product Requirements Doc | `/docs/prd.md` | Done | PM-Requirements | 40KB, 10 sections, Hebrew-first pilot scope |
 | Backlog | `/docs/backlog.md` | Done | PM-Requirements | 35 items across Pilot / V1 / V2 (IDs #1–#35) |
 | Decision Log | `/docs/decision-log.md` | Active | CTO-Architect | 20 decisions logged (7 new architecture decisions) |
@@ -59,4 +59,4 @@ _Inter-agent flags that need founder attention. When an agent flags something fo
 
 1. ~~**Architecture not yet written.**~~ **Done** (2026-03-13). All P0 backlog items are now unblocked from the architecture dependency.
 2. **Design spec not yet written.** Visual implementation items (gem sprites, screen layouts, animations) depend on the design spec. **Invoke UX-Design next** — Architecture dependency is resolved.
-3. **SDB skipped.** PM-Solution-Discovery was never run. The PRD was written without a formal Solution Discovery Brief. Consider running it retroactively or accepting the gap.
+3. ~~**SDB skipped.**~~ **Gap accepted** (2026-03-14). Founder confirmed PM-Solution-Discovery is not needed retroactively — the PRD was written with sufficient solution clarity. Will invoke the agent only if a solution pivot is needed.
