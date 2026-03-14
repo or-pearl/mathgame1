@@ -4,7 +4,7 @@
 
 | Phase | Total | Done | In Progress | Not Started |
 |-------|-------|------|-------------|-------------|
-| Pilot | 21 | 0 | 0 | 21 |
+| Pilot | 21 | 3 | 0 | 18 |
 | V1 | 10 | 0 | 0 | 10 |
 | V2+ | 7 | 0 | 0 | 7 |
 
@@ -12,9 +12,9 @@
 
 | # | Priority | Item | PRD Section | Complexity | Dependencies | Status |
 |---|----------|------|-------------|------------|--------------|--------|
-| 36 | P0 | Design system definition (color palette, typography, spacing, component tokens) | 8 | M | Architecture | Not Started |
-| 37 | P0 | Screen designs for all Pilot screens (gameplay, progress map, title, level complete, settings) | 8.3 | L | #36 | Not Started |
-| 38 | P0 | Asset manifest and gem sprite generation specs | 8 | M | #36 | Not Started |
+| 36 | P0 | Design system definition (color palette, typography, spacing, component tokens) | 8 | M | Architecture | Done |
+| 37 | P0 | Screen designs for all Pilot screens (gameplay, progress map, title, level complete, settings) | 8.3 | L | #36 | Done |
+| 38 | P0 | Asset manifest and gem sprite generation specs | 8 | M | #36 | Done |
 | 1 | P0 | Gem-splitting core mechanic (drag-to-split, animate, display equation) | 4.1 | L | Architecture, #37 | Not Started |
 | 2 | P0 | Audio narration system (Hebrew TTS, speaker toggle, autoplay handling) | 4.9 | M | Architecture | Not Started |
 | 3 | P0 | Hebrew language UI and RTL layout (all text, menus, navigation in Hebrew RTL; math notation stays LTR) | 1.1, 8.1 | M | Architecture, #36 | Not Started |
